@@ -4,7 +4,8 @@ CREATE TABLE `user` (
     `user_name` VARCHAR(32) UNIQUE NOT NULL DEFAULT '',     # 用户名
     `user_pass` VARCHAR(32) NOT NULL DEFAULT '',            # 密码
     `realname` VARCHAR(16) DEFAULT '',                      # 真实姓名
-    `gender` TINYINT(1) DEFAULT 0,                          # 性别（0：未知，1：男，2：女）
+    # 巨坑：TIBYINT(1)会被转成Boolean，只能存布尔值0和1
+    `gender` TINYINT(4) DEFAULT 0,                          # 性别（0：未知，1：男，2：女）
     `phone` VARCHAR(11) DEFAULT '',                         # 手机号码
     `email` VARCHAR(100) DEFAULT '',                        # 邮箱地址
     `alipay` VARCHAR(100) DEFAULT '',                       # 支付宝账号
@@ -31,6 +32,7 @@ CREATE TABLE `task` (
     `endtime` TIMESTAMP NOT NULL DEFAULT NULL,                      # 任务终止时间
     `pic_url` VARCHAR(127) DEFAULT '',                              # 任务图片地址
     `pubtime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,         # 任务发布时间
+    `is_finished` TINYINT(1) DEFAULT 0,                             # 0：未完成，1：已完成
     CONSTRAINT `FK_ID` FOREIGN KEY (`publisher_id`) REFERENCES `user` (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='任务表';
 
@@ -42,10 +44,10 @@ CREATE TABLE `order` (
     `price` DOUBLE DEFAULT NULL,                # 订单金额
     `task_status` TINYINT(1) DEFAULT NULL,      # 任务订单状态（订单生成、进行中、已完成、已取消、有纠纷）
     `comment_status` SMALLINT(2) DEFAULT NULL,  # 评价状态（买/卖家未评价1、买/卖家已评价2，如12表示买家未评价、卖家已评价）
-    `comment1` VARCHAR(255) DEFAULT NULL,       # 买家评论（任务发布者）
-    `comment2` VARCHAR(255) DEFAULT NULL,       # 卖家评论（任务接受者）
-    `rate1` TINYINT(1) DEFAULT 5,               # 买家评分（任务发布者）
-    `rate2` TINYINT(1) DEFAULT 5,               # 卖家评分（任务接受者）
+    `comment_buyer` VARCHAR(255) DEFAULT NULL,  # 买家评论（任务发布者）
+    `comment_seller` VARCHAR(255) DEFAULT NULL, # 卖家评论（任务接受者）
+    `rate_buyer` TINYINT(1) DEFAULT 5,          # 买家评分（任务发布者）
+    `rate_seller` TINYINT(1) DEFAULT 5,         # 卖家评分（任务接受者）
     CONSTRAINT `FK_ID` FOREIGN KEY (`tid`) REFERENCES `task` (`task_id`),
     CONSTRAINT `FK_RECEIVER` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='任务订单表';

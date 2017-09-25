@@ -90,12 +90,6 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPublisherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-    select
-    <include refid="Base_Column_List" />
-    from task
-    where publisher_id = #{publisherId,jdbcType=INTEGER}
-  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -309,4 +303,37 @@
       pubtime = #{pubtime,jdbcType=TIMESTAMP}
     where task_id = #{taskId,jdbcType=INTEGER}
   </update>
+
+
+
+  <select id="selectByPublisherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from task
+    where publisher_id = #{publisherId,jdbcType=INTEGER}
+  </select>
+  <select id="selectUncompletedByPublisherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from task
+    where publisher_id = #{publisherId,jdbcType=INTEGER} AND is_finished = 0
+  </select>
+  <select id="selectCompletedByPublisherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from task
+    where publisher_id = #{publisherId,jdbcType=INTEGER} AND is_finished = 1
+  </select>
+  <select id="selectByTitle" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from task
+    where CONCAT(`title`,`description`) LIKE CONCAT('%', #{title,jdbcType=VARCHAR}, '%')
+  </select>
+  <select id="selectByCategory" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from task
+    where category = #{category,jdbcType=INTEGER}
+  </select>
 </mapper>

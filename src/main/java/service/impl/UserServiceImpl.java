@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import po.User;
 import service.UserService;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,5 +47,23 @@ public class UserServiceImpl implements UserService {
 
     public int selectRowCount() {
         return userMapper.selectRowCount();
+    }
+
+    public int deleteUser(String userName, String userPass) {
+        User user = userMapper.selectByUserName(userName);
+        return userMapper.deleteByPrimaryKey(user.getUserId());
+    }
+
+    public int changePass(String userName, String newPass) {
+        int userId = getUserByUserName(userName).getUserId();
+        User user = new User(userId, userName, newPass);
+        return userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    public int updateUser(String userName, String userPass, String realname, Integer gender, String phone, String email,
+                          String alipay, String iconimg, String info, Date createdTime, Date lastLogin, Integer honesty, Double balance) {
+        int userId = getUserByUserName(userName).getUserId();
+        User user = new User(userId, userName, userPass, realname, gender, phone, email, alipay, iconimg, info, createdTime, lastLogin, honesty, balance);
+        return userMapper.updateByPrimaryKeySelective(user);
     }
 }

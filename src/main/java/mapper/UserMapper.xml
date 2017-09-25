@@ -6,7 +6,7 @@
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="user_pass" property="userPass" jdbcType="VARCHAR"/>
         <result column="realname" property="realname" jdbcType="VARCHAR"/>
-        <result column="gender" property="gender" jdbcType="BIT"/>
+        <result column="gender" property="gender" jdbcType="INTEGER"/>
         <result column="phone" property="phone" jdbcType="VARCHAR"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
         <result column="alipay" property="alipay" jdbcType="VARCHAR"/>
@@ -118,7 +118,7 @@
       info, created_time, last_login, 
       honesty, balance)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPass,jdbcType=VARCHAR}, 
-      #{realname,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, #{phone,jdbcType=VARCHAR}, 
+      #{realname,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR},
       #{email,jdbcType=VARCHAR}, #{alipay,jdbcType=VARCHAR}, #{iconimg,jdbcType=VARCHAR}, 
       #{info,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{lastLogin,jdbcType=TIMESTAMP}, 
       #{honesty,jdbcType=INTEGER}, #{balance,jdbcType=DOUBLE})
@@ -186,7 +186,7 @@
                 #{realname,jdbcType=VARCHAR},
             </if>
             <if test="gender != null">
-                #{gender,jdbcType=BIT},
+                #{gender,jdbcType=INTEGER},
             </if>
             <if test="phone != null">
                 #{phone,jdbcType=VARCHAR},
@@ -239,7 +239,7 @@
                 realname = #{record.realname,jdbcType=VARCHAR},
             </if>
             <if test="record.gender != null">
-                gender = #{record.gender,jdbcType=BIT},
+                gender = #{record.gender,jdbcType=INTEGER},
             </if>
             <if test="record.phone != null">
                 phone = #{record.phone,jdbcType=VARCHAR},
@@ -279,7 +279,7 @@
         user_name = #{record.userName,jdbcType=VARCHAR},
         user_pass = #{record.userPass,jdbcType=VARCHAR},
         realname = #{record.realname,jdbcType=VARCHAR},
-        gender = #{record.gender,jdbcType=BIT},
+        gender = #{record.gender,jdbcType=INTEGER},
         phone = #{record.phone,jdbcType=VARCHAR},
         email = #{record.email,jdbcType=VARCHAR},
         alipay = #{record.alipay,jdbcType=VARCHAR},
@@ -306,7 +306,7 @@
                 realname = #{realname,jdbcType=VARCHAR},
             </if>
             <if test="gender != null">
-                gender = #{gender,jdbcType=BIT},
+                gender = #{gender,jdbcType=INTEGER},
             </if>
             <if test="phone != null">
                 phone = #{phone,jdbcType=VARCHAR},
@@ -343,7 +343,7 @@
     set user_name = #{userName,jdbcType=VARCHAR},
       user_pass = #{userPass,jdbcType=VARCHAR},
       realname = #{realname,jdbcType=VARCHAR},
-      gender = #{gender,jdbcType=BIT},
+      gender = #{gender,jdbcType=INTEGER},
       phone = #{phone,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       alipay = #{alipay,jdbcType=VARCHAR},

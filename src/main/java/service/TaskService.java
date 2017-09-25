@@ -18,4 +18,14 @@ public interface TaskService {
     void deleteTask(Integer taskId);
 
     List<Task> selectTask(Integer publisherId);
+
+    List<Task> selectUncompletedTask(Integer publisherId);
+
+    List<Task> selectCompletedTask(Integer publisherId);
+
+    List<Task> selectTaskByTitle(String title);
+
+    List<Task> selectTaskByCategory(String category);
+
+
 }

@@ -16,10 +16,6 @@
     <!-- 1.使用spring组件扫描 -->
     <context:component-scan base-package="controller" />
 
-    <!-- 2.通过annotation-driven可以替代下边的处理器映射器和适配器 -->
-    <!--<mvc:annotation-driven conversion-service="customConversionService"/>-->
-    <mvc:annotation-driven/>
-    <mvc:default-servlet-handler/>
     <!--&lt;!&ndash;对特定的请求进行拦截&ndash;&gt;-->
     <!--<mvc:interceptors>-->
         <!--<mvc:interceptor>-->
@@ -29,7 +25,7 @@
             <!--<bean class="filter.HeaderTokenInterceptor"/>-->
         <!--</mvc:interceptor>-->
     <!--</mvc:interceptors>-->
-    <!--&lt;!&ndash; 日期转换 &ndash;&gt;-->
+    <!-- 日期转换 -->
     <!--<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">-->
         <!--<property name="interceptors">-->
             <!--<list>-->
@@ -37,23 +33,27 @@
             <!--</list>-->
         <!--</property>-->
     <!--</bean>-->
-    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
-        <!--<property name="messageConverters">-->
-            <!--<list>-->
-                <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>-->
-            <!--</list>-->
-        <!--</property>-->
-        <!--<property name="webBindingInitializer">-->
-            <!--<bean class="converter.CustomBindingInitializer"/>-->
-        <!--</property>-->
-    <!--</bean>-->
-    <!--<bean id="customConversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">-->
-        <!--<property name="converters">-->
-            <!--<set>-->
-                <!--<bean class="converter.DateConverter"/>-->
-            <!--</set>-->
-        <!--</property>-->
-    <!--</bean>-->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+            </list>
+        </property>
+        <property name="webBindingInitializer">
+            <bean class="converter.CustomBindingInitializer"/>
+        </property>
+    </bean>
+    <bean id="customConversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="converter.DateConverter"/>
+            </set>
+        </property>
+    </bean>
+    <!-- 2.通过annotation-driven可以替代下边的处理器映射器和适配器 -->
+    <!--<mvc:annotation-driven conversion-service="customConversionService"/>-->
+    <mvc:annotation-driven/>
+    <mvc:default-servlet-handler/>
 
     <!-- 3.配置视图解析器ViewResolver -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

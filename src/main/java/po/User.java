@@ -2,6 +2,7 @@ package po;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import converter.CustomDateSerializer;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -14,7 +15,7 @@ public class User {
 
     private String realname;
 
-    private Boolean gender;
+    private Integer gender;
 
     private String phone;
 
@@ -42,6 +43,12 @@ public class User {
         this.userPass = userPass;
     }
 
+    public User(Integer userId, String userName, String userPass) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userPass = userPass;
+    }
+
     public User(Integer userId, String userName, String userPass, Date createdTime, Date lastLogin) {
         this.userId = userId;
         this.userName = userName;
@@ -50,7 +57,7 @@ public class User {
         this.lastLogin = lastLogin;
     }
 
-    public User(Integer userId, String userName, String userPass, String realname, Boolean gender, String phone, String email,
+    public User(Integer userId, String userName, String userPass, String realname, Integer gender, String phone, String email,
                 String alipay, String iconimg, String info, Date createdTime, Date lastLogin, Integer honesty, Double balance) {
         this.userId = userId;
         this.userName = userName;
@@ -100,11 +107,11 @@ public class User {
         this.realname = realname == null ? null : realname.trim();
     }
 
-    public Boolean getGender() {
+    public Integer getGender() {
         return gender;
     }
 
-    public void setGender(Boolean gender) {
+    public void setGender(Integer gender) {
         this.gender = gender;
     }
 
@@ -149,6 +156,7 @@ public class User {
     }
 
     @JsonSerialize(using = CustomDateSerializer.class)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getCreatedTime() {
         return createdTime;
     }
@@ -158,6 +166,7 @@ public class User {
     }
 
     @JsonSerialize(using = CustomDateSerializer.class)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getLastLogin() {
         return lastLogin;
     }

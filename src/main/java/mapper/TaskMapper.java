@@ -19,8 +19,6 @@ public interface TaskMapper {
 
     List<Task> selectByExample(TaskExample example);
 
-    List<Task> selectByPublisherId(Integer publisherId);
-
     Task selectByPrimaryKey(Integer taskId);
 
     int updateByExampleSelective(@Param("record") Task record, @Param("example") TaskExample example);
@@ -30,4 +28,14 @@ public interface TaskMapper {
     int updateByPrimaryKeySelective(Task record);
 
     int updateByPrimaryKey(Task record);
+
+    List<Task> selectByPublisherId(Integer publisherId);
+
+    List<Task> selectUncompletedByPublisherId(Integer publisherId);
+
+    List<Task> selectCompletedByPublisherId(Integer publisherId);
+
+    List<Task> selectByTitle(String title);
+
+    List<Task> selectByCategory(int category);
 }

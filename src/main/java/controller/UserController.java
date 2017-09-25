@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import po.User;
 import service.UserService;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -109,13 +110,25 @@ public class UserController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public void delete(@RequestParam("userName") String userName, @RequestParam("userPass") String userPass) {
-        userService.insertUser(userName, userPass);
+        userService.deleteUser(userName, userPass);
+    }
+
+    @RequestMapping(value = "/changePass", method = RequestMethod.POST)
+    @ResponseBody
+    public void changePass(@RequestParam("userName") String userName, @RequestParam("newPass") String newPass) {
+        userService.changePass(userName, newPass);
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
-    public void edit(@RequestParam("userName") String userName, @RequestParam("userPass") String userPass) {
-        userService.insertUser(userName, userPass);
+    public void edit(@RequestParam("userName") String userName, @RequestParam("userPass") String userPass,
+                     @RequestParam("realname") String realname, @RequestParam("gender") Integer gender,
+                     @RequestParam("phone") String phone, @RequestParam("email") String email,
+                     @RequestParam("alipay") String alipay, @RequestParam("iconimg") String iconimg,
+                     @RequestParam("info") String info, @RequestParam("createdTime") Date createdTime,
+                     @RequestParam("lastLogin") Date lastLogin, @RequestParam("honesty") Integer honesty,
+                     @RequestParam("balance") Double balance) {
+        userService.updateUser(userName, userPass, realname, gender, phone, email, alipay, iconimg, info, createdTime, lastLogin, honesty, balance);
     }
 
     // http://localhost:8080/user/getUser?userName=admin

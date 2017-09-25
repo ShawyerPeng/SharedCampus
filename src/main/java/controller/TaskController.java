@@ -65,9 +65,40 @@ public class TaskController {
         return "ok";
     }
 
-    @RequestMapping(value = "/getAllTasksByPublisherId", method = RequestMethod.POST)
+    // http://localhost:8080/task/getAllTasks?publisherId=1
+    @RequestMapping(value = "/getAllTasks")
     @ResponseBody
     public List<Task> getAllTasksByPublisherId(@RequestParam("publisherId") Integer publisherId) {
         return taskService.selectTask(publisherId);
     }
+
+    // http://localhost:8080/task/getUncompletedTasks?publisherId=1
+    @RequestMapping(value = "/getUncompletedTasks")
+    @ResponseBody
+    public List<Task> getUncompletedTasksByPublisherId(@RequestParam("publisherId") Integer publisherId) {
+        return taskService.selectUncompletedTask(publisherId);
+    }
+
+    // http://localhost:8080/task/getCompletedTasks?publisherId=1
+    @RequestMapping(value = "/getCompletedTasks")
+    @ResponseBody
+    public List<Task> getCompletedTasksByPublisherId(@RequestParam("publisherId") Integer publisherId) {
+        return taskService.selectCompletedTask(publisherId);
+    }
+
+    // http://localhost:8080/task/searchTaskByTitle?title=
+    @RequestMapping(value = "/searchTaskByTitle")
+    @ResponseBody
+    public List<Task> searchTaskByTitle(@RequestParam("title") String title) {
+        return taskService.selectTaskByTitle(title);
+    }
+
+    // http://localhost:8080/task/searchTaskByCategory?category=
+    @RequestMapping(value = "/searchTaskByCategory")
+    @ResponseBody
+    public List<Task> searchTaskByCategory(@RequestParam("category") String category) {
+        return taskService.selectTaskByCategory(category);
+    }
+
+
 }
