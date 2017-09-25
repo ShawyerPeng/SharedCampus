@@ -1,13 +1,11 @@
 package controller;
 
 import filter.JwtUtil;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.SignatureException;
-import io.jsonwebtoken.impl.crypto.MacProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import po.User;
@@ -22,57 +20,109 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/insert")
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
-    public String insert(@RequestParam("userName") String userName, @RequestParam("userPass") String userPass) {
-        userService.insertUser(userName, userPass);
-        return "true";
+    public Map register(@RequestParam("userName") String userName, @RequestParam("userPass") String userPass) {
+        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
+        if (userName == null || userPass == null) {
+            map.put("data", data);
+            map.put("statusCode", "400");
+            map.put("message", "未输入用户名或密码");
+            return map;
+        }
+
+        int rowCount;
+        try {
+            userService.insertUser(userName, userPass);
+            rowCount = userService.selectRowCount();
+        } catch (DuplicateKeyException e) {
+            map.put("data", null);
+            map.put("statusCode", "400");
+            map.put("message", "用户名已存在");
+            return map;
+        }
+        if (rowCount != 0) {
+            map.put("data", null);
+            map.put("statusCode", "200");
+            map.put("message", "注册成功");
+        }
+        return map;
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public Map login(@RequestParam("userName") String userName, @RequestParam("userPass") String userPass) {
+        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
+        if (userName == null || userPass == null) {
+            map.put("data", data);
+            map.put("statusCode", "400");
+            map.put("message", "未输入用户名或密码");
+            return map;
+        }
+
+        boolean exists = userService.isExistsUserName(userName);
+        if (!exists) {
+            map.put("data", null);
+            map.put("statusCode", "400");
+            map.put("message", "不存在此用户");
+            return map;
+        }
+
+        boolean success = userService.isPassCorrect(userName, userPass);
+        if (!success) {
+            map.put("data", null);
+            map.put("statusCode", "400");
+            map.put("message", "密码错误");
+            return map;
+        } else {
+            String token = JwtUtil.generToken("Shawyer", null, null);
+            data.put("token", token);
+            map.put("data", data);
+            map.put("statusCode", "200");
+            map.put("message", "登陆成功");
+            return map;
+        }
+    }
+
+    // http://localhost:8080/user/check?userName=admin
     @RequestMapping("/check")
     @ResponseBody
-    public boolean isExistsUserName(@RequestParam("userName") String userName) {
-        return userService.isExistsUserName(userName);
+    public Map isExistsUserName(@RequestParam("userName") String userName) {
+        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
+        boolean exists = userService.isExistsUserName(userName);
+        if (exists) {
+            map.put("data", data);
+            map.put("statusCode", "200");
+            map.put("message", "该用户存在");
+            return map;
+        } else {
+            map.put("data", data);
+            map.put("statusCode", "400");
+            map.put("message", "不存在此用户");
+            return map;
+        }
     }
 
-    @RequestMapping("/delete")
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public void delete(@RequestParam("userName") String userName, @RequestParam("userPass") String userPass) {
         userService.insertUser(userName, userPass);
     }
 
-    @RequestMapping("/edit")
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
     public void edit(@RequestParam("userName") String userName, @RequestParam("userPass") String userPass) {
         userService.insertUser(userName, userPass);
     }
 
+    // http://localhost:8080/user/getUser?userName=admin
     @RequestMapping("/getUser")
     @ResponseBody
     public User getUser(@RequestParam("userName") String userName) {
         return userService.getUserByUserName(userName);
     }
 
-    @RequestMapping("/login")
-    @ResponseBody
-    public Map login(@RequestParam("userName") String userName, @RequestParam("userPass") String userPass) {
-        Map<String, Object> map = new HashMap<>();
-        boolean success = userService.isPassCorrect(userName, userPass);
-        if (userName == null || userPass == null) {
-            map.put("data", null);
-            map.put("statusCode", "400");
-            map.put("message", "未输入用户名或密码");
-        }
-        if (!success) {
-            map.put("data", null);
-            map.put("statusCode", "400");
-            map.put("message", "密码错误");
-        } else {
-            String token = JwtUtil.generToken("Shawyer",null,null);
-            map.put("data", token);
-            map.put("statusCode", "200");
-            map.put("message", "登陆成功");
-        }
-        return map;
-    }
 }

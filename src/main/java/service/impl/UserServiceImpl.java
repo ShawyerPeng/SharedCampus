@@ -14,9 +14,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public void insertUser(String userName, String userPass) {
+    public int insertUser(String userName, String userPass) {
         User user = new User(userName, userPass);
-        userMapper.insert(user);
+        user.setHonesty(100);
+        // 返回自增ID
+        return userMapper.insert(user);
     }
 
     public boolean isExistsUserName(String userName) {
@@ -40,5 +42,9 @@ public class UserServiceImpl implements UserService {
 
     public User getUserByUserName(String userName) {
         return userMapper.selectByUserName(userName);
+    }
+
+    public int selectRowCount() {
+        return userMapper.selectRowCount();
     }
 }

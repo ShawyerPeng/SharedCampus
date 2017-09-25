@@ -20,14 +20,15 @@
     <!--<mvc:annotation-driven conversion-service="customConversionService"/>-->
     <mvc:annotation-driven/>
     <mvc:default-servlet-handler/>
-    <!--对特定的请求进行拦截-->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**/*"/>
-            <mvc:exclude-mapping path="/user/login"/>
-            <bean class="filter.HeaderTokenInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
+    <!--&lt;!&ndash;对特定的请求进行拦截&ndash;&gt;-->
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**/*"/>-->
+            <!--<mvc:exclude-mapping path="/user/login"/>-->
+            <!--<mvc:exclude-mapping path="/user/register"/>-->
+            <!--<bean class="filter.HeaderTokenInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
     <!--&lt;!&ndash; 日期转换 &ndash;&gt;-->
     <!--<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">-->
         <!--<property name="interceptors">-->

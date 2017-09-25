@@ -5,8 +5,17 @@
         <id column="user_id" property="userId" jdbcType="INTEGER"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="user_pass" property="userPass" jdbcType="VARCHAR"/>
-        <result column="created" property="created" jdbcType="TIMESTAMP"/>
+        <result column="realname" property="realname" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="BIT"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="alipay" property="alipay" jdbcType="VARCHAR"/>
+        <result column="iconimg" property="iconimg" jdbcType="VARCHAR"/>
+        <result column="info" property="info" jdbcType="VARCHAR"/>
+        <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
         <result column="last_login" property="lastLogin" jdbcType="TIMESTAMP"/>
+        <result column="honesty" property="honesty" jdbcType="INTEGER"/>
+        <result column="balance" property="balance" jdbcType="DOUBLE"/>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -69,7 +78,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    user_id, user_name, user_pass, created, last_login
+    user_id, user_name, user_pass, realname, gender, phone, email, alipay, iconimg, info, 
+    created_time, last_login, honesty, balance
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="po.UserExample">
         select
@@ -91,18 +101,6 @@
         from user
         where user_id = #{userId,jdbcType=INTEGER}
     </select>
-    <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
-        select
-        <include refid="Base_Column_List"/>
-        from user
-        where user_name = #{userName,jdbcType=VARCHAR}
-    </select>
-    <select id="selectByUserPass" resultMap="BaseResultMap" parameterType="map">
-        select
-        <include refid="Base_Column_List"/>
-        from user
-        where user_name = #{userName,jdbcType=VARCHAR} AND user_pass = #{userPass,jdbcType=VARCHAR}
-    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
     where user_id = #{userId,jdbcType=INTEGER}
@@ -113,11 +111,20 @@
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="po.User">
+    <insert id="insert" parameterType="po.User" useGeneratedKeys="true" keyColumn="user_id" keyProperty="userId">
     insert into user (user_id, user_name, user_pass, 
-      created, last_login)
+      realname, gender, phone, 
+      email, alipay, iconimg, 
+      info, created_time, last_login, 
+      honesty, balance)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPass,jdbcType=VARCHAR}, 
-      #{created,jdbcType=TIMESTAMP}, #{lastLogin,jdbcType=TIMESTAMP})
+      #{realname,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, #{phone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{alipay,jdbcType=VARCHAR}, #{iconimg,jdbcType=VARCHAR}, 
+      #{info,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{lastLogin,jdbcType=TIMESTAMP}, 
+      #{honesty,jdbcType=INTEGER}, #{balance,jdbcType=DOUBLE})
+    <!--<selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">-->
+        <!--SELECT LAST_INSERT_ID()-->
+    <!--</selectKey>-->
   </insert>
     <insert id="insertSelective" parameterType="po.User">
         insert into user
@@ -131,11 +138,38 @@
             <if test="userPass != null">
                 user_pass,
             </if>
-            <if test="created != null">
-                created,
+            <if test="realname != null">
+                realname,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="alipay != null">
+                alipay,
+            </if>
+            <if test="iconimg != null">
+                iconimg,
+            </if>
+            <if test="info != null">
+                info,
+            </if>
+            <if test="createdTime != null">
+                created_time,
             </if>
             <if test="lastLogin != null">
                 last_login,
+            </if>
+            <if test="honesty != null">
+                honesty,
+            </if>
+            <if test="balance != null">
+                balance,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -148,11 +182,38 @@
             <if test="userPass != null">
                 #{userPass,jdbcType=VARCHAR},
             </if>
-            <if test="created != null">
-                #{created,jdbcType=TIMESTAMP},
+            <if test="realname != null">
+                #{realname,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=BIT},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="alipay != null">
+                #{alipay,jdbcType=VARCHAR},
+            </if>
+            <if test="iconimg != null">
+                #{iconimg,jdbcType=VARCHAR},
+            </if>
+            <if test="info != null">
+                #{info,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime,jdbcType=TIMESTAMP},
             </if>
             <if test="lastLogin != null">
                 #{lastLogin,jdbcType=TIMESTAMP},
+            </if>
+            <if test="honesty != null">
+                #{honesty,jdbcType=INTEGER},
+            </if>
+            <if test="balance != null">
+                #{balance,jdbcType=DOUBLE},
             </if>
         </trim>
     </insert>
@@ -174,11 +235,38 @@
             <if test="record.userPass != null">
                 user_pass = #{record.userPass,jdbcType=VARCHAR},
             </if>
-            <if test="record.created != null">
-                created = #{record.created,jdbcType=TIMESTAMP},
+            <if test="record.realname != null">
+                realname = #{record.realname,jdbcType=VARCHAR},
+            </if>
+            <if test="record.gender != null">
+                gender = #{record.gender,jdbcType=BIT},
+            </if>
+            <if test="record.phone != null">
+                phone = #{record.phone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.email != null">
+                email = #{record.email,jdbcType=VARCHAR},
+            </if>
+            <if test="record.alipay != null">
+                alipay = #{record.alipay,jdbcType=VARCHAR},
+            </if>
+            <if test="record.iconimg != null">
+                iconimg = #{record.iconimg,jdbcType=VARCHAR},
+            </if>
+            <if test="record.info != null">
+                info = #{record.info,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createdTime != null">
+                created_time = #{record.createdTime,jdbcType=TIMESTAMP},
             </if>
             <if test="record.lastLogin != null">
                 last_login = #{record.lastLogin,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.honesty != null">
+                honesty = #{record.honesty,jdbcType=INTEGER},
+            </if>
+            <if test="record.balance != null">
+                balance = #{record.balance,jdbcType=DOUBLE},
             </if>
         </set>
         <if test="_parameter != null">
@@ -190,8 +278,17 @@
         set user_id = #{record.userId,jdbcType=INTEGER},
         user_name = #{record.userName,jdbcType=VARCHAR},
         user_pass = #{record.userPass,jdbcType=VARCHAR},
-        created = #{record.created,jdbcType=TIMESTAMP},
-        last_login = #{record.lastLogin,jdbcType=TIMESTAMP}
+        realname = #{record.realname,jdbcType=VARCHAR},
+        gender = #{record.gender,jdbcType=BIT},
+        phone = #{record.phone,jdbcType=VARCHAR},
+        email = #{record.email,jdbcType=VARCHAR},
+        alipay = #{record.alipay,jdbcType=VARCHAR},
+        iconimg = #{record.iconimg,jdbcType=VARCHAR},
+        info = #{record.info,jdbcType=VARCHAR},
+        created_time = #{record.createdTime,jdbcType=TIMESTAMP},
+        last_login = #{record.lastLogin,jdbcType=TIMESTAMP},
+        honesty = #{record.honesty,jdbcType=INTEGER},
+        balance = #{record.balance,jdbcType=DOUBLE}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
@@ -205,11 +302,38 @@
             <if test="userPass != null">
                 user_pass = #{userPass,jdbcType=VARCHAR},
             </if>
-            <if test="created != null">
-                created = #{created,jdbcType=TIMESTAMP},
+            <if test="realname != null">
+                realname = #{realname,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=BIT},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="alipay != null">
+                alipay = #{alipay,jdbcType=VARCHAR},
+            </if>
+            <if test="iconimg != null">
+                iconimg = #{iconimg,jdbcType=VARCHAR},
+            </if>
+            <if test="info != null">
+                info = #{info,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime,jdbcType=TIMESTAMP},
             </if>
             <if test="lastLogin != null">
                 last_login = #{lastLogin,jdbcType=TIMESTAMP},
+            </if>
+            <if test="honesty != null">
+                honesty = #{honesty,jdbcType=INTEGER},
+            </if>
+            <if test="balance != null">
+                balance = #{balance,jdbcType=DOUBLE},
             </if>
         </set>
         where user_id = #{userId,jdbcType=INTEGER}
@@ -218,8 +342,34 @@
     update user
     set user_name = #{userName,jdbcType=VARCHAR},
       user_pass = #{userPass,jdbcType=VARCHAR},
-      created = #{created,jdbcType=TIMESTAMP},
-      last_login = #{lastLogin,jdbcType=TIMESTAMP}
+      realname = #{realname,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=BIT},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      alipay = #{alipay,jdbcType=VARCHAR},
+      iconimg = #{iconimg,jdbcType=VARCHAR},
+      info = #{info,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      last_login = #{lastLogin,jdbcType=TIMESTAMP},
+      honesty = #{honesty,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=DOUBLE}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+
+    <select id="selectRowCount" resultType="java.lang.Integer">
+    select row_count()
+  </select>
+    <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where user_name = #{userName,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByUserPass" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where user_name = #{userName,jdbcType=VARCHAR} AND user_pass = #{userPass,jdbcType=VARCHAR}
+    </select>
 </mapper>
