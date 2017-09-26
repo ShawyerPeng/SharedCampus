@@ -16,9 +16,8 @@
 1003 | 缺失参数
 
 # 接口说明
-https://www.showdoc.cc/
 ## User
-请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
+请求 URL | 功能描述 | 请求参数（`*`为必填项） | 请求方式 | 返回结果
 --- | --- | --- | --- | ---
 `/user/register` | 用户注册 | userName*, userPass* | POST |
 `/user/login` | 用户登录 | userName*, userPass* | POST |
@@ -42,7 +41,16 @@ https://www.showdoc.cc/
 `/task/searchTaskByCategory` | 根据分类搜索任务 | category* | GET |
 
 ## Order
-`/order/` |  |  | POST | 
+请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
+--- | --- | --- | --- | ---
+`/order/` | | | POST | 
 `/order/` | | | POST |
 `/order/` | | | POST |
 `/order/` | | | POST |
+
+## Image
+请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
+--- | --- | --- | --- | ---
+`/image/upload` | 上传图片 | file* | POST | 
+`/image/uploadMultipart` | 上传图片（多张） | file* | POST |
+`/image/uploadWithDescription` | 上传图片（添加描述） | file*, description* | POST |

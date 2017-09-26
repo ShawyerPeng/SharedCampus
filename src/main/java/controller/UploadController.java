@@ -13,7 +13,7 @@ import java.io.File;
 import java.util.UUID;
 
 @Controller
-@RequestMapping
+@RequestMapping("/image")
 public class UploadController {
     @Autowired
     private UploadService uploadService;
