@@ -201,6 +201,8 @@ http://118.89.142.148:8080/task/searchTaskByCategory
 ## Image
 非JSON格式！！！请用form-data格式传输！！！  
 
+上传后真实图片URL地址为：http://localhost:8080/images/xxx.jpg
+
 请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
 --- | --- | --- | --- | ---
 `/image/upload` | 上传图片 | file* | POST | 
@@ -212,3 +214,4 @@ http://118.89.142.148:8080/image/upload
 http://118.89.142.148:8080/image/uploadMultipart
 ### uploadWithDescription
 http://118.89.142.148:8080/image/uploadWithDescription
+

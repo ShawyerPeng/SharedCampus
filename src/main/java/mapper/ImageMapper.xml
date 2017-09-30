@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="po.Image" >
     <id column="image_id" property="imageId" jdbcType="INTEGER" />
     <result column="filename" property="filename" jdbcType="VARCHAR" />
-    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    image_id, filename, url, description
+    image_id, filename, pic_url, description
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="po.ImageExample" >
     select
@@ -99,9 +99,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="po.Image" >
-    insert into image (image_id, filename, url,
+    insert into image (image_id, filename, pic_url,
       description)
-    values (#{imageId,jdbcType=INTEGER}, #{filename,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
+    values (#{imageId,jdbcType=INTEGER}, #{filename,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR},
       #{description,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="po.Image" >
@@ -113,8 +113,8 @@
       <if test="filename != null" >
         filename,
       </if>
-      <if test="url != null" >
-        url,
+      <if test="pic_url != null" >
+        pic_url,
       </if>
       <if test="description != null" >
         description,
@@ -127,8 +127,8 @@
       <if test="filename != null" >
         #{filename,jdbcType=VARCHAR},
       </if>
-      <if test="url != null" >
-        #{url,jdbcType=VARCHAR},
+      <if test="pic_url != null" >
+        #{picUrl,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
@@ -150,8 +150,8 @@
       <if test="record.filename != null" >
         filename = #{record.filename,jdbcType=VARCHAR},
       </if>
-      <if test="record.url != null" >
-        url = #{record.url,jdbcType=VARCHAR},
+      <if test="record.picUrl != null" >
+        pic_url = #{record.picUrl,jdbcType=VARCHAR},
       </if>
       <if test="record.description != null" >
         description = #{record.description,jdbcType=VARCHAR},
@@ -165,7 +165,7 @@
     update image
     set image_id = #{record.imageId,jdbcType=INTEGER},
       filename = #{record.filename,jdbcType=VARCHAR},
-      url = #{record.url,jdbcType=VARCHAR},
+      pic_url = #{record.picUrl,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,8 +177,8 @@
       <if test="filename != null" >
         filename = #{filename,jdbcType=VARCHAR},
       </if>
-      <if test="url != null" >
-        url = #{url,jdbcType=VARCHAR},
+      <if test="pic_url != null" >
+        pic_url = #{picUrl,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
@@ -189,7 +189,7 @@
   <update id="updateByPrimaryKey" parameterType="po.Image" >
     update image
     set filename = #{filename,jdbcType=VARCHAR},
-      url = #{url,jdbcType=VARCHAR},
+      pic_url = #{picUrl,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR}
     where image_id = #{imageId,jdbcType=INTEGER}
   </update>

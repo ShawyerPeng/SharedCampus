@@ -5,24 +5,31 @@ public class Image {
 
     private String filename;
 
-    private String url;
+    private String picUrl;
 
     private String description;
 
     public Image() {
     }
 
-    public Image(String filename, String url) {
+    public Image(String filename, String picUrl) {
         this.filename = filename;
-        this.url = url;
+        this.picUrl = picUrl;
     }
 
-    public Image(String filename, String url, String description) {
+    public Image(String filename, String picUrl, String description) {
         this.filename = filename;
-        this.url = url;
+        this.picUrl = picUrl;
         this.description = description;
     }
 
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
 
     public Integer getImageId() {
         return imageId;
@@ -40,13 +47,6 @@ public class Image {
         this.filename = filename == null ? null : filename.trim();
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
-    }
 
     public String getDescription() {
         return description;
@@ -55,4 +55,6 @@ public class Image {
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
     }
+
+
 }

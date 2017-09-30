@@ -11,13 +11,13 @@ public class UploadServiceImpl implements UploadService {
     @Autowired
     private ImageMapper imageMapper;
 
-    public void insertFile(String filename, String url) {
-        Image image = new Image(filename, url);
+    public void insertFile(String filename, String picUrl) {
+        Image image = new Image(filename, picUrl);
         imageMapper.insert(image);
     }
 
-    public void insertFileWithDescription(String filename, String url, String description) {
-        Image image = new Image(filename, url, description);
+    public void insertFileWithDescription(String filename, String picUrl, String description) {
+        Image image = new Image(filename, picUrl, description);
         imageMapper.insert(image);
     }
 }

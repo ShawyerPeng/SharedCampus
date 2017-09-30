@@ -20,13 +20,13 @@ public class UploadController {
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ResponseBody
-    public String upload(@RequestParam("file")MultipartFile pictureFile) throws Exception {
+    public String upload(@RequestParam("file") MultipartFile pictureFile) throws Exception {
         String FILEPATH = "C:\\Users\\ShawyerPeng\\Desktop\\pictures\\";
         String originalFilename = "";
         String newFileName = "";
 
         //进行图片的上传
-        if (pictureFile!=null && pictureFile.getOriginalFilename()!=null && pictureFile.getOriginalFilename().length()>0) {
+        if (pictureFile != null && pictureFile.getOriginalFilename() != null && pictureFile.getOriginalFilename().length() > 0) {
             //图片上传成功后，将图片的地址写到数据库
             originalFilename = pictureFile.getOriginalFilename();
 
@@ -40,20 +40,20 @@ public class UploadController {
             pictureFile.transferTo(file);
         }
 
-        uploadService.insertFile(originalFilename, FILEPATH + newFileName);
+        uploadService.insertFile(originalFilename, newFileName);
 
-        return FILEPATH + newFileName;
+        return newFileName;
     }
 
     @RequestMapping(value = "/uploadWithDescription", method = RequestMethod.POST)
     @ResponseBody
-    public String uploadWithDescription(@RequestParam("file")MultipartFile pictureFile, @RequestParam("description")String description) throws Exception {
+    public String uploadWithDescription(@RequestParam("file") MultipartFile pictureFile, @RequestParam("description") String description) throws Exception {
         String FILEPATH = "C:\\Users\\ShawyerPeng\\Desktop\\pictures\\";
         String originalFilename = "";
         String newFileName = "";
 
         //进行图片的上传
-        if (pictureFile!=null && pictureFile.getOriginalFilename()!=null && pictureFile.getOriginalFilename().length()>0) {
+        if (pictureFile != null && pictureFile.getOriginalFilename() != null && pictureFile.getOriginalFilename().length() > 0) {
             //图片上传成功后，将图片的地址写到数据库
             originalFilename = pictureFile.getOriginalFilename();
 
@@ -74,14 +74,14 @@ public class UploadController {
 
     @RequestMapping(value = "/uploadMultipart", method = RequestMethod.POST)
     @ResponseBody
-    public String uploadMultipart(@RequestParam("file")MultipartFile[] pictureFile, @RequestParam("description")String description) throws Exception {
+    public String uploadMultipart(@RequestParam("file") MultipartFile[] pictureFile, @RequestParam("description") String description) throws Exception {
         String FILEPATH = "C:\\Users\\ShawyerPeng\\Desktop\\pictures\\";
         String originalFilename = "";
         String newFileName = "";
 
         //进行图片的上传
-        for (int i = 0; i<pictureFile.length; i++) {
-            if (pictureFile[i]!=null && pictureFile[i].getOriginalFilename()!=null && pictureFile[i].getOriginalFilename().length()>0) {
+        for (int i = 0; i < pictureFile.length; i++) {
+            if (pictureFile[i] != null && pictureFile[i].getOriginalFilename() != null && pictureFile[i].getOriginalFilename().length() > 0) {
                 originalFilename = pictureFile[i].getOriginalFilename();
                 newFileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
 
@@ -89,7 +89,7 @@ public class UploadController {
 
                 pictureFile[i].transferTo(file);
             }
-            uploadService.insertFileWithDescription(originalFilename, FILEPATH+newFileName, description);
+            uploadService.insertFileWithDescription(originalFilename, FILEPATH + newFileName, description);
         }
 
         return "ok";
