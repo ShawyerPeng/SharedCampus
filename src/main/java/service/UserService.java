@@ -19,6 +19,8 @@ public interface UserService {
 
     int changePass(String userName, String userPass);
 
-    int updateUser(String userName, String userPass, String realname, Integer gender, String phone, String email,
+    int updateUser(String userName, String realname, Integer gender, String phone, String email, String alipay, String iconimg, String info);
+
+    int updateUser1(String userName, String userPass, String realname, Integer gender, String phone, String email,
                    String alipay, String iconimg, String info, Date createdTime, Date lastLogin, Integer honesty, Double balance);
 }

@@ -25,14 +25,6 @@
             <!--<bean class="filter.HeaderTokenInterceptor"/>-->
         <!--</mvc:interceptor>-->
     <!--</mvc:interceptors>-->
-    <!-- 日期转换 -->
-    <!--<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">-->
-        <!--<property name="interceptors">-->
-            <!--<list>-->
-                <!--<bean class="filter.HeaderTokenInterceptor"/>-->
-            <!--</list>-->
-        <!--</property>-->
-    <!--</bean>-->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">
             <list>

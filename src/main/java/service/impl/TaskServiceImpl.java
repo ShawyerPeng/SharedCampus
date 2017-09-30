@@ -54,6 +54,7 @@ public class TaskServiceImpl implements TaskService {
         return taskMapper.selectByTitle(title);
     }
 
+    @Override
     public List<Task> selectTaskByCategory(String category) {
         Map<String, Object> categoryMap = new HashMap<>();
         // TODO: 修改对应的分类

@@ -26,6 +26,4 @@ public interface TaskService {
     List<Task> selectTaskByTitle(String title);
 
     List<Task> selectTaskByCategory(String category);
-
-
 }

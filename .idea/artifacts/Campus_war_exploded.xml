@@ -7,6 +7,7 @@
         <element id="directory" name="classes">
           <element id="module-output" name="Campus" />
           <element id="module-output" name="MybatisGenerator" />
+          <element id="module-output" name="jelly-api" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.3.8.RELEASE" />
@@ -54,6 +55,19 @@
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.7.25" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="library" level="project" name="Maven: io.netty:netty-all:5.0.0.Alpha2" />
+          <element id="library" level="project" name="Maven: org.fusesource.hawtbuf:hawtbuf:1.11" />
+          <element id="library" level="project" name="Maven: org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0" />
+          <element id="library" level="project" name="Maven: org.fusesource.mqtt-client:mqtt-client:1.13" />
+          <element id="library" level="project" name="Maven: org.fusesource.hawtdispatch:hawtdispatch-transport:1.22" />
+          <element id="library" level="project" name="Maven: org.fusesource.hawtdispatch:hawtdispatch:1.22" />
+          <element id="library" level="project" name="Maven: com.rabbitmq:amqp-client:5.0.0" />
+          <element id="library" level="project" name="Maven: org.fusesource.mqtt-client:mqtt-client:1.12" />
+          <element id="library" level="project" name="Maven: org.fusesource.hawtdispatch:hawtdispatch-transport:1.21" />
+          <element id="library" level="project" name="Maven: org.fusesource.hawtdispatch:hawtdispatch:1.21" />
+          <element id="library" level="project" name="Maven: org.fusesource.hawtbuf:hawtbuf:1.10" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/Jelly-master.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/mqtt-client-java1.4-uber-1.7.jar" />
         </element>
       </element>
     </root>

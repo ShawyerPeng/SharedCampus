@@ -1,6 +1,8 @@
 package po;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import converter.CustomDateDeserializer;
 import converter.CustomDateSerializer;
 
 import java.util.Date;
@@ -123,6 +125,7 @@ public class Task {
     }
 
     @JsonSerialize(using = CustomDateSerializer.class)
+    @JsonDeserialize(using = CustomDateDeserializer.class)
     public Date getStarttime() {
         return starttime;
     }
@@ -132,6 +135,7 @@ public class Task {
     }
 
     @JsonSerialize(using = CustomDateSerializer.class)
+    @JsonDeserialize(using = CustomDateDeserializer.class)
     public Date getEndtime() {
         return endtime;
     }
@@ -149,6 +153,7 @@ public class Task {
     }
 
     @JsonSerialize(using = CustomDateSerializer.class)
+    @JsonDeserialize(using = CustomDateDeserializer.class)
     public Date getPubtime() {
         return pubtime;
     }

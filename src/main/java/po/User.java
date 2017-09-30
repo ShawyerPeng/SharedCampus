@@ -13,6 +13,8 @@ public class User {
 
     private String userPass;
 
+    private String newPass;
+
     private String realname;
 
     private Integer gender;
@@ -75,6 +77,29 @@ public class User {
         this.balance = balance;
     }
 
+    public User(String userName, String realname, Integer gender, String phone, String email, String alipay, String iconimg, String info) {
+        this.userName = userName;
+        this.realname = realname;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.alipay = alipay;
+        this.iconimg = iconimg;
+        this.info = info;
+    }
+
+    public User(Integer userId, String userName, String realname, Integer gender, String phone, String email, String alipay, String iconimg, String info) {
+        this.userId = userId;
+        this.userName = userName;
+        this.realname = realname;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.alipay = alipay;
+        this.iconimg = iconimg;
+        this.info = info;
+    }
+
     public Integer getUserId() {
         return userId;
     }
@@ -97,6 +122,14 @@ public class User {
 
     public void setUserPass(String userPass) {
         this.userPass = userPass == null ? null : userPass.trim();
+    }
+
+    public String getNewPass() {
+        return newPass;
+    }
+
+    public void setNewPass(String newPass) {
+        this.newPass = newPass;
     }
 
     public String getRealname() {

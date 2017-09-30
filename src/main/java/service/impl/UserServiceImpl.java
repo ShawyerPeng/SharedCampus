@@ -60,6 +60,18 @@ public class UserServiceImpl implements UserService {
         return userMapper.updateByPrimaryKeySelective(user);
     }
 
+    @Override
+    public int updateUser(String userName, String realname, Integer gender, String phone, String email, String alipay, String iconimg, String info) {
+        int userId = getUserByUserName(userName).getUserId();
+        User user = new User(userId, userName, realname, gender, phone, email, alipay, iconimg, info);
+        return userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
+    public int updateUser1(String userName, String userPass, String realname, Integer gender, String phone, String email, String alipay, String iconimg, String info, Date createdTime, Date lastLogin, Integer honesty, Double balance) {
+        return 0;
+    }
+
     public int updateUser(String userName, String userPass, String realname, Integer gender, String phone, String email,
                           String alipay, String iconimg, String info, Date createdTime, Date lastLogin, Integer honesty, Double balance) {
         int userId = getUserByUserName(userName).getUserId();
