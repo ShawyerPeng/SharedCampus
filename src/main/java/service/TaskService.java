@@ -1,5 +1,6 @@
 package service;
 
+import po.PagedResult;
 import po.Task;
 
 import java.util.Date;
@@ -16,6 +17,10 @@ public interface TaskService {
                     Double price, Integer counts, Date starttime, Date endtime);
 
     void deleteTask(Integer taskId);
+
+    PagedResult<Task> queryByPage(Integer pageNo, Integer pageSize);
+
+    Task selectTaskByTaskId(Integer taskId);
 
     List<Task> selectTask(Integer publisherId);
 

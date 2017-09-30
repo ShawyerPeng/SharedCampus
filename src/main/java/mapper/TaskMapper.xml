@@ -306,6 +306,18 @@
 
 
 
+  <select id="selectAllTasks" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task
+    order by pubtime desc
+  </select>
+  <select id="selectByTaskId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from task
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </select>
   <select id="selectByPublisherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select
     <include refid="Base_Column_List" />
@@ -336,4 +348,5 @@
     from task
     where category = #{category,jdbcType=INTEGER}
   </select>
+
 </mapper>

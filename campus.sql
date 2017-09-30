@@ -27,7 +27,7 @@ CREATE TABLE `task` (
     `counts` MEDIUMINT(8) NOT NULL DEFAULT 0,                       # 任务人数
     `starttime` TIMESTAMP NOT NULL DEFAULT '1970-01-02 00:00:00',   # 任务起始时间
     `endtime` TIMESTAMP NOT NULL DEFAULT '1970-01-02 00:00:00',     # 任务终止时间
-    `pic_url` VARCHAR(127) DEFAULT '',                              # 任务图片地址
+    `pic` VARCHAR(127) DEFAULT '',                                  # 任务图片地址
     `pubtime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,         # 任务发布时间
     `is_finished` TINYINT(4) NOT NULL DEFAULT 0,                    # 0：未完成，1：已完成
     CONSTRAINT `FK_PID` FOREIGN KEY (`publisher_id`) REFERENCES `user` (`user_id`)  ON DELETE CASCADE ON UPDATE CASCADE

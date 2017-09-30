@@ -28,7 +28,14 @@
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">
             <list>
-                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <!-- 注意 这是传输json格式，无论是ajax还是外部接口传输-->
+                            <value>application/json;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
             </list>
         </property>
         <property name="webBindingInitializer">

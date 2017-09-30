@@ -1,6 +1,7 @@
 package mapper;
 
 import org.apache.ibatis.annotations.Param;
+import po.PagedResult;
 import po.Task;
 import po.TaskExample;
 
@@ -28,6 +29,10 @@ public interface TaskMapper {
     int updateByPrimaryKeySelective(Task record);
 
     int updateByPrimaryKey(Task record);
+
+    List<Task> selectAllTasks();
+
+    Task selectByTaskId(Integer taskId);
 
     List<Task> selectByPublisherId(Integer publisherId);
 

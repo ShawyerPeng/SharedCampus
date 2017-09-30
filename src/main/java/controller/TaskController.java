@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import po.PagedResult;
 import po.Task;
 import service.TaskService;
 
@@ -18,7 +19,7 @@ public class TaskController {
     @Autowired
     private UploadController uploadController;
 
-    @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    @RequestMapping(value = "/insert", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String insert(@RequestBody Task task) throws Exception {
         Integer publisherId = task.getPublisherId();
@@ -30,14 +31,15 @@ public class TaskController {
         Date starttime = task.getStarttime();
         Date endtime = task.getEndtime();
         taskService.insertTask(publisherId, title, description, category, price, counts, starttime, endtime);
-        return "ok";
+        return title + " " + description;
     }
+
     @RequestMapping(value = "/insert2", method = RequestMethod.POST)
     @ResponseBody
     public String insert2(@RequestParam("publisherId") Integer publisherId, @RequestParam("title") String title,
-                         @RequestParam("description") String description, @RequestParam("category") Integer category,
-                         @RequestParam("price") Double price, @RequestParam("counts") Integer counts,
-                         @RequestParam("starttime") Date starttime, @RequestParam("endtime") Date endtime) throws Exception {
+                          @RequestParam("description") String description, @RequestParam("category") Integer category,
+                          @RequestParam("price") Double price, @RequestParam("counts") Integer counts,
+                          @RequestParam("starttime") Date starttime, @RequestParam("endtime") Date endtime) throws Exception {
         taskService.insertTask(publisherId, title, description, category, price, counts, starttime, endtime);
         return "ok";
     }
@@ -61,13 +63,14 @@ public class TaskController {
         }
         return "ok";
     }
+
     @RequestMapping(value = "/insertWithPic2", method = RequestMethod.POST)
     @ResponseBody
     public String insertWithPic2(@RequestParam("publisherId") Integer publisherId, @RequestParam("title") String title,
-                                @RequestParam("description") String description, @RequestParam("category") Integer category,
-                                @RequestParam("price") Double price, @RequestParam("counts") Integer counts,
-                                @RequestParam("starttime") Date starttime, @RequestParam("endtime") Date endtime,
-                                @RequestParam("pic") MultipartFile pic) throws Exception {
+                                 @RequestParam("description") String description, @RequestParam("category") Integer category,
+                                 @RequestParam("price") Double price, @RequestParam("counts") Integer counts,
+                                 @RequestParam("starttime") Date starttime, @RequestParam("endtime") Date endtime,
+                                 @RequestParam("pic") MultipartFile pic) throws Exception {
         if (pic.isEmpty()) {
             taskService.insertTask(publisherId, title, description, category, price, counts, starttime, endtime);
         } else {
@@ -92,13 +95,14 @@ public class TaskController {
         taskService.updateTask(taskId, publisherId, title, description, category, price, counts, starttime, endtime);
         return "ok";
     }
+
     @RequestMapping(value = "/edit2", method = RequestMethod.POST)
     @ResponseBody
     public String edit2(@RequestParam("taskId") Integer taskId,
-                       @RequestParam("publisherId") Integer publisherId, @RequestParam("title") String title,
-                       @RequestParam("description") String description, @RequestParam("category") Integer category,
-                       @RequestParam("price") Double price, @RequestParam("counts") Integer counts,
-                       @RequestParam("starttime") Date starttime, @RequestParam("endtime") Date endtime) {
+                        @RequestParam("publisherId") Integer publisherId, @RequestParam("title") String title,
+                        @RequestParam("description") String description, @RequestParam("category") Integer category,
+                        @RequestParam("price") Double price, @RequestParam("counts") Integer counts,
+                        @RequestParam("starttime") Date starttime, @RequestParam("endtime") Date endtime) {
         taskService.updateTask(taskId, publisherId, title, description, category, price, counts, starttime, endtime);
         return "ok";
     }
@@ -110,6 +114,7 @@ public class TaskController {
         taskService.deleteTask(taskId);
         return "ok";
     }
+
     @RequestMapping(value = "/delete2", method = RequestMethod.POST)
     @ResponseBody
     public String delete2(@RequestParam("taskId") Integer taskId) {
@@ -117,13 +122,36 @@ public class TaskController {
         return "ok";
     }
 
-    // http://localhost:8080/task/getAllTasks?publisherId=1
-    @RequestMapping(value = "/getAllTasks")
+    // http://localhost:8080/task/getTasks?pageNo=1&pageSize=20
+    @RequestMapping(value = "/getTasks")
+    @ResponseBody
+    public PagedResult<Task> getTasks(@RequestBody PagedResult<Task> taskPagedResult) {
+        Integer pageNo = taskPagedResult.getPageNo();
+        Integer pageSize = taskPagedResult.getPageSize();
+        try {
+            return taskService.queryByPage(pageNo, pageSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // http://localhost:8080/task/getTaskByTaskId?taskId=1
+    @RequestMapping(value = "/getTaskByTaskId")
+    @ResponseBody
+    public List<Task> getTaskByTaskId(@RequestBody Task task) {
+        Integer taskId = task.getTaskId();
+        return taskService.selectTask(taskId);
+    }
+
+    // http://localhost:8080/task/getAllTasksByPublisherId?publisherId=1
+    @RequestMapping(value = "/getAllTasksByPublisherId")
     @ResponseBody
     public List<Task> getAllTasksByPublisherId(@RequestBody Task task) {
         Integer publisherId = task.getPublisherId();
         return taskService.selectTask(publisherId);
     }
+
     @RequestMapping(value = "/getAllTasks2")
     @ResponseBody
     public List<Task> getAllTasksByPublisherId2(@RequestParam("publisherId") Integer publisherId) {
@@ -137,6 +165,7 @@ public class TaskController {
         Integer publisherId = task.getPublisherId();
         return taskService.selectUncompletedTask(publisherId);
     }
+
     @RequestMapping(value = "/getUncompletedTasks2")
     @ResponseBody
     public List<Task> getUncompletedTasksByPublisherId2(@RequestParam("publisherId") Integer publisherId) {
@@ -150,6 +179,7 @@ public class TaskController {
         Integer publisherId = task.getPublisherId();
         return taskService.selectCompletedTask(publisherId);
     }
+
     @RequestMapping(value = "/getCompletedTasks2")
     @ResponseBody
     public List<Task> getCompletedTasksByPublisherId2(@RequestParam("publisherId") Integer publisherId) {
@@ -163,6 +193,7 @@ public class TaskController {
         String title = task.getTitle();
         return taskService.selectTaskByTitle(title);
     }
+
     @RequestMapping(value = "/searchTaskByTitle2")
     @ResponseBody
     public List<Task> searchTaskByTitle2(@RequestParam("title") String title) {
@@ -176,6 +207,7 @@ public class TaskController {
         String category = task.getCategory().toString();
         return taskService.selectTaskByCategory(category);
     }
+
     @RequestMapping(value = "/searchTaskByCategory2")
     @ResponseBody
     public List<Task> searchTaskByCategory2(@RequestParam("category") Integer category) {

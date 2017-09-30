@@ -95,6 +95,8 @@ http://118.89.142.148:8080/user/getUser
 `/task/insertWithPic` | 新增任务（带图片） | publisherId, title, description, category, price, counts, starttime, endtime, pic_url | POST | 
 `/task/edit` | 修改任务信息 | taskId, publisherId, title, description, category, price, counts, starttime, endtime | POST |
 `/task/delete` | 删除任务 | taskId* | POST |
+`/task/getTasks` | 分页获取任务 | pageNo*,pageSize* | GET |
+`/task/getTaskByTaskId` | 获取单个任务信息 | taskId* | GET |
 `/task/getAllTasks` | 获取用户的所有任务 | publisherId* | GET |
 `/task/getUncompletedTasks` | 获取用户所有未完成任务 | publisherId* | GET | 
 `/task/getCompletedTasks` | 获取用户所有已完成任务 | publisherId* | GET |
@@ -149,6 +151,21 @@ http://118.89.142.148:8080/task/delete
 ```json
 {
 	"taskId":8
+}
+```
+### getTasks
+http://118.89.142.148:8080/task/getTasks
+```json
+{
+	"pageNo":1,
+	"pageSize":20
+}
+```
+### getTaskByTaskId
+http://118.89.142.148:8080/task/getTaskByTaskId
+```json
+{
+	"taskId":1
 }
 ```
 ### getAllTasks

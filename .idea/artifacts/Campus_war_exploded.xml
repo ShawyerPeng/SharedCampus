@@ -68,6 +68,8 @@
           <element id="library" level="project" name="Maven: org.fusesource.hawtbuf:hawtbuf:1.10" />
           <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/Jelly-master.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/mqtt-client-java1.4-uber-1.7.jar" />
+          <element id="library" level="project" name="Maven: com.github.pagehelper:pagehelper:5.1.2" />
+          <element id="library" level="project" name="Maven: com.github.jsqlparser:jsqlparser:1.0" />
         </element>
       </element>
     </root>
