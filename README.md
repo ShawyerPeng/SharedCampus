@@ -67,7 +67,6 @@ http://118.89.142.148:8080/user/changePass
 ```
 ### edit
 http://118.89.142.148:8080/user/edit
-性别 - 0：未知，1：男，2：女
 ```json
 {
 	"userName":"admin",
