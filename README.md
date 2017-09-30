@@ -188,6 +188,50 @@ http://118.89.142.148:8080/task/searchTaskByCategory
 }
 ```
 
+## Comment
+### insert
+http://118.89.142.148:8080/comment/insert
+留言：
+```json
+{
+	"taskId":1,
+	"fromUid":1,
+	"toUid":null,
+	"content":"200元"
+}
+```
+回复留言：
+```json
+{
+	"taskId":1,
+	"fromUid":1,
+	"toUid":2,
+	"content":"200元"
+}
+```
+### delete
+http://118.89.142.148:8080/comment/delete
+```json
+{
+	"commentId":1
+}
+```
+### getAllComments
+http://118.89.142.148:8080/comment/getAllComments
+```json
+{
+	"fromUid":1
+}
+```
+
+### getTaskComments
+http://118.89.142.148:8080/comment/getTaskComments
+```json
+{
+	"taskId":1
+}
+```
+
 
 ## Order
 请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
@@ -196,6 +240,23 @@ http://118.89.142.148:8080/task/searchTaskByCategory
 `/order/` | | | POST |
 `/order/` | | | POST |
 `/order/` | | | POST |
+
+### 
+http://118.89.142.148:8080/order/
+```json
+
+```
+### 
+http://118.89.142.148:8080/order/
+```json
+
+```
+### 
+http://118.89.142.148:8080/order/
+```json
+
+```
+
 
 ## Image
 非JSON格式！！！请用form-data格式传输！！！  

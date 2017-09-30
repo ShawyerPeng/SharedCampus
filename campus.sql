@@ -19,7 +19,7 @@ CREATE TABLE `user` (
 DROP TABLE IF EXISTS `task`;
 CREATE TABLE `task` (
     `task_id` INT(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,   # 任务ID，主键
-    `publisher_id` INT(11) UNSIGNED NOT NULL,                                # 任务发布者
+    `publisher_id` INT(11) UNSIGNED NOT NULL,                       # 任务发布者
     `title` VARCHAR(32) NOT NULL DEFAULT '',                        # 任务标题
     `description` VARCHAR(255) NOT NULL DEFAULT '',                 # 任务描述
     `category` MEDIUMINT(8) NOT NULL DEFAULT 0,                     # 任务分类
@@ -29,19 +29,18 @@ CREATE TABLE `task` (
     `endtime` TIMESTAMP NOT NULL DEFAULT '1970-01-02 00:00:00',     # 任务终止时间
     `pic_url` VARCHAR(127) DEFAULT '',                              # 任务图片地址
     `pubtime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,         # 任务发布时间
-    `is_finished` TINYINT(4) DEFAULT 0,                             # 0：未完成，1：已完成
+    `is_finished` TINYINT(4) NOT NULL DEFAULT 0,                    # 0：未完成，1：已完成
     CONSTRAINT `FK_PID` FOREIGN KEY (`publisher_id`) REFERENCES `user` (`user_id`)  ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='任务表';
 
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
     `comment_id` INT(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `task_id` INT(11) UNSIGNED UNIQUE NOT NULL,                     # 任务ID
-    `from_uid` INT(11) NOT NULL,                                    # 留言人
-    `to_uid` INT(11) DEFAULT NULL,                                  # 回复谁的留言（无回复则NULL）
+    `task_id` INT(11) UNSIGNED NOT NULL,                            # 任务ID
+    `from_uid` INT(11) UNSIGNED NOT NULL,                           # 留言人
+    `to_uid` INT(11) UNSIGNED DEFAULT NULL,                         # 回复谁的留言（无回复则NULL）
     `content` VARCHAR(255) NOT NULL,                                # 留言内容
-    `send_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,       # 留言时间
-    CONSTRAINT `FK_TID` FOREIGN KEY (`task_id`) REFERENCES `task` (`task_id`)  ON DELETE CASCADE ON UPDATE CASCADE
+    `send_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP        # 留言时间
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='任务留言表';
 
 
@@ -67,8 +66,8 @@ CREATE TABLE `order` (
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message` (
     `message_id` INT(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `sender_id` INT(11) NOT NULL,
-    `receiver_id` INT(11) NOT NULL,
+    `sender_id` INT(11) UNSIGNED NOT NULL,
+    `receiver_id` INT(11) UNSIGNED NOT NULL,
     `content` VARCHAR(255) NOT NULL,
     `send_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP         # 私信消息发送时间
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='私信消息表';
