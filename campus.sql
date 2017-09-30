@@ -48,16 +48,16 @@ CREATE TABLE `comment` (
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
     `order_id` INT(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,   # 任务订单ID，主键
-    `tid` INT(11) UNSIGNED DEFAULT NULL,                 # 任务ID
+    `task_id` INT(11) UNSIGNED DEFAULT NULL,                 # 任务ID
     `receiver_id` INT(11) UNSIGNED DEFAULT NULL,         # 任务接受者ID
-    `price` DOUBLE DEFAULT NULL,                # 订单金额
-    `task_status` TINYINT(4) DEFAULT NULL,      # 任务订单状态（订单生成、进行中、已完成、已取消、有纠纷）
-    `comment_status` SMALLINT(2) DEFAULT NULL,  # 评价状态（买/卖家未评价1、买/卖家已评价2，如12表示买家未评价、卖家已评价）
-    `comment_buyer` VARCHAR(255) DEFAULT NULL,  # 买家评论（任务发布者）
-    `comment_seller` VARCHAR(255) DEFAULT NULL, # 卖家评论（任务接受者）
-    `rate_buyer` TINYINT(4) DEFAULT 5,          # 买家评分（任务发布者）
-    `rate_seller` TINYINT(4) DEFAULT 5,         # 卖家评分（任务接受者）
-    CONSTRAINT `FK_ID` FOREIGN KEY (`tid`) REFERENCES `task` (`task_id`),
+    `price` DOUBLE DEFAULT NULL,                    # 订单金额
+    `task_status` TINYINT(4) DEFAULT NULL,          # 任务订单状态（订单生成、进行中、已完成、已取消、有纠纷）
+    `comment_status` TINYINT(4) DEFAULT NULL,      # 评价状态（买/卖家未评价1、买/卖家已评价2，如12表示买家未评价、卖家已评价）
+    `comment_buyer` VARCHAR(255) DEFAULT NULL,      # 买家评论（任务发布者）
+    `comment_seller` VARCHAR(255) DEFAULT NULL,     # 卖家评论（任务接受者）
+    `rate_buyer` TINYINT(4) DEFAULT 5,              # 买家评分（任务发布者）
+    `rate_seller` TINYINT(4) DEFAULT 5,             # 卖家评分（任务接受者）
+    CONSTRAINT `FK_ID` FOREIGN KEY (`task_id`) REFERENCES `task` (`task_id`),
     CONSTRAINT `FK_RECEIVER` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='任务订单表';
 

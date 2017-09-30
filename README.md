@@ -189,8 +189,16 @@ http://118.89.142.148:8080/task/searchTaskByCategory
 ```
 
 ## Comment
+请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
+--- | --- | --- | --- | ---
+`/Comment/insert` | 新增评论 | taskId*, fromUid*, toUid, content* | POST | 
+`/Comment/delete` | 删除评论 | commentId* | POST |
+`/Comment/getAllComments` | 获取某用户的所有评论 | fromUid* | POST | 
+`/Comment/getTaskComments` | 获取某个任务下的所有评论 | taskId* | POST |
+
 ### insert
 http://118.89.142.148:8080/comment/insert
+
 留言：
 ```json
 {
