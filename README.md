@@ -283,3 +283,88 @@ http://118.89.142.148:8080/image/uploadMultipart
 ### uploadWithDescription
 http://118.89.142.148:8080/image/uploadWithDescription
 
+
+
+
+# 数据库字段表
+## User
+```
++--------------+------------------+------+-----+---------------------+-----------------------------+
+| Field        | Type             | Null | Key | Default             | Extra                       |
++--------------+------------------+------+-----+---------------------+-----------------------------+
+| user_id      | int(11) unsigned | NO   | PRI | NULL                | auto_increment              |
+| user_name    | varchar(32)      | NO   | UNI |                     |                             |
+| user_pass    | varchar(32)      | NO   |     |                     |                             |
+| realname     | varchar(16)      | YES  |     |                     |                             |
+| gender       | tinyint(4)       | YES  |     | 0                   |                             |
+| phone        | varchar(11)      | YES  |     |                     |                             |
+| email        | varchar(100)     | YES  |     |                     |                             |
+| alipay       | varchar(100)     | YES  |     |                     |                             |
+| iconimg      | varchar(120)     | YES  |     |                     |                             |
+| info         | varchar(255)     | YES  |     |                     |                             |
+| created_time | timestamp        | NO   |     | CURRENT_TIMESTAMP   |                             |
+| last_login   | timestamp        | NO   |     | 1970-01-02 00:00:00 | on update CURRENT_TIMESTAMP |
+| honesty      | int(4)           | NO   |     | 100                 |                             |
+| balance      | double           | YES  |     | 0                   |                             |
++--------------+------------------+------+-----+---------------------+-----------------------------+
+```
+## Task
+```
++--------------+------------------+------+-----+---------------------+----------------+
+| Field        | Type             | Null | Key | Default             | Extra          |
++--------------+------------------+------+-----+---------------------+----------------+
+| task_id      | int(11) unsigned | NO   | PRI | NULL                | auto_increment |
+| publisher_id | int(11) unsigned | NO   | MUL | NULL                |                |
+| title        | varchar(32)      | NO   |     |                     |                |
+| description  | varchar(255)     | NO   |     |                     |                |
+| category     | mediumint(8)     | NO   |     | 0                   |                |
+| price        | double           | NO   |     | 0                   |                |
+| counts       | mediumint(8)     | NO   |     | 0                   |                |
+| starttime    | timestamp        | NO   |     | 1970-01-02 00:00:00 |                |
+| endtime      | timestamp        | NO   |     | 1970-01-02 00:00:00 |                |
+| pic_url      | varchar(127)     | YES  |     |                     |                |
+| pubtime      | timestamp        | NO   |     | CURRENT_TIMESTAMP   |                |
+| is_finished  | tinyint(4)       | NO   |     | 0                   |                |
++--------------+------------------+------+-----+---------------------+----------------+
+```
+## Comment
+```
++------------+------------------+------+-----+-------------------+----------------+
+| Field      | Type             | Null | Key | Default           | Extra          |
++------------+------------------+------+-----+-------------------+----------------+
+| comment_id | int(11) unsigned | NO   | PRI | NULL              | auto_increment |
+| task_id    | int(11) unsigned | NO   |     | NULL              |                |
+| from_uid   | int(11) unsigned | NO   |     | NULL              |                |
+| to_uid     | int(11) unsigned | YES  |     | NULL              |                |
+| content    | varchar(255)     | NO   |     | NULL              |                |
+| send_time  | timestamp        | NO   |     | CURRENT_TIMESTAMP |                |
++------------+------------------+------+-----+-------------------+----------------+
+```
+## Order
+```
++----------------+------------------+------+-----+---------+----------------+
+| Field          | Type             | Null | Key | Default | Extra          |
++----------------+------------------+------+-----+---------+----------------+
+| order_id       | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| task_id        | int(11) unsigned | YES  | MUL | NULL    |                |
+| receiver_id    | int(11) unsigned | YES  | MUL | NULL    |                |
+| price          | double           | YES  |     | NULL    |                |
+| task_status    | tinyint(4)       | YES  |     | NULL    |                |
+| comment_status | tinyint(4)       | YES  |     | NULL    |                |
+| comment_buyer  | varchar(255)     | YES  |     | NULL    |                |
+| comment_seller | varchar(255)     | YES  |     | NULL    |                |
+| rate_buyer     | tinyint(4)       | YES  |     | 5       |                |
+| rate_seller    | tinyint(4)       | YES  |     | 5       |                |
++----------------+------------------+------+-----+---------+----------------+
+```
+## Image
+```
++-------------+------------------+------+-----+---------+----------------+
+| Field       | Type             | Null | Key | Default | Extra          |
++-------------+------------------+------+-----+---------+----------------+
+| image_id    | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| filename    | varchar(255)     | NO   |     |         |                |
+| pic_url     | varchar(255)     | NO   |     |         |                |
+| description | varchar(255)     | YES  |     |         |                |
++-------------+------------------+------+-----+---------+----------------+
+```

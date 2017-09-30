@@ -57,8 +57,8 @@ CREATE TABLE `order` (
     `comment_seller` VARCHAR(255) DEFAULT NULL,     # 卖家评论（任务接受者）
     `rate_buyer` TINYINT(4) DEFAULT 5,              # 买家评分（任务发布者）
     `rate_seller` TINYINT(4) DEFAULT 5,             # 卖家评分（任务接受者）
-    CONSTRAINT `FK_ID` FOREIGN KEY (`task_id`) REFERENCES `task` (`task_id`),
-    CONSTRAINT `FK_RECEIVER` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`user_id`)
+    CONSTRAINT `FK_TID` FOREIGN KEY (`task_id`) REFERENCES `task` (`task_id`),
+    CONSTRAINT `FK_RID` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='任务订单表';
 
 
