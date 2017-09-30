@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="po.Order" >
+    <id column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="task_id" property="taskId" jdbcType="INTEGER" />
+    <result column="receiver_id" property="receiverId" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="task_status" property="taskStatus" jdbcType="TINYINT" />
+    <result column="comment_status" property="commentStatus" jdbcType="SMALLINT" />
+    <result column="comment_buyer" property="commentBuyer" jdbcType="VARCHAR" />
+    <result column="comment_seller" property="commentSeller" jdbcType="VARCHAR" />
+    <result column="rate_buyer" property="rateBuyer" jdbcType="TINYINT" />
+    <result column="rate_seller" property="rateSeller" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    order_id, task_id, receiver_id, price, task_status, comment_status, comment_buyer, 
+    comment_seller, rate_buyer, rate_seller
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="po.OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="po.OrderExample" >
+    delete from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="po.Order" >
+    insert into order (order_id, task_id, receiver_id, 
+      price, task_status, comment_status, 
+      comment_buyer, comment_seller, rate_buyer, 
+      rate_seller)
+    values (#{orderId,jdbcType=INTEGER}, #{taskId,jdbcType=INTEGER}, #{receiverId,jdbcType=INTEGER}, 
+      #{price,jdbcType=DOUBLE}, #{taskStatus,jdbcType=TINYINT}, #{commentStatus,jdbcType=SMALLINT}, 
+      #{commentBuyer,jdbcType=VARCHAR}, #{commentSeller,jdbcType=VARCHAR}, #{rateBuyer,jdbcType=TINYINT}, 
+      #{rateSeller,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="po.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="taskId != null" >
+        task_id,
+      </if>
+      <if test="receiverId != null" >
+        receiver_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="taskStatus != null" >
+        task_status,
+      </if>
+      <if test="commentStatus != null" >
+        comment_status,
+      </if>
+      <if test="commentBuyer != null" >
+        comment_buyer,
+      </if>
+      <if test="commentSeller != null" >
+        comment_seller,
+      </if>
+      <if test="rateBuyer != null" >
+        rate_buyer,
+      </if>
+      <if test="rateSeller != null" >
+        rate_seller,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="taskId != null" >
+        #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="receiverId != null" >
+        #{receiverId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="taskStatus != null" >
+        #{taskStatus,jdbcType=TINYINT},
+      </if>
+      <if test="commentStatus != null" >
+        #{commentStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="commentBuyer != null" >
+        #{commentBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="commentSeller != null" >
+        #{commentSeller,jdbcType=VARCHAR},
+      </if>
+      <if test="rateBuyer != null" >
+        #{rateBuyer,jdbcType=TINYINT},
+      </if>
+      <if test="rateSeller != null" >
+        #{rateSeller,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="po.OrderExample" resultType="java.lang.Integer" >
+    select count(*) from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order
+    <set >
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.taskId != null" >
+        task_id = #{record.taskId,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiverId != null" >
+        receiver_id = #{record.receiverId,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DOUBLE},
+      </if>
+      <if test="record.taskStatus != null" >
+        task_status = #{record.taskStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.commentStatus != null" >
+        comment_status = #{record.commentStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="record.commentBuyer != null" >
+        comment_buyer = #{record.commentBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commentSeller != null" >
+        comment_seller = #{record.commentSeller,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rateBuyer != null" >
+        rate_buyer = #{record.rateBuyer,jdbcType=TINYINT},
+      </if>
+      <if test="record.rateSeller != null" >
+        rate_seller = #{record.rateSeller,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order
+    set order_id = #{record.orderId,jdbcType=INTEGER},
+      task_id = #{record.taskId,jdbcType=INTEGER},
+      receiver_id = #{record.receiverId,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=DOUBLE},
+      task_status = #{record.taskStatus,jdbcType=TINYINT},
+      comment_status = #{record.commentStatus,jdbcType=SMALLINT},
+      comment_buyer = #{record.commentBuyer,jdbcType=VARCHAR},
+      comment_seller = #{record.commentSeller,jdbcType=VARCHAR},
+      rate_buyer = #{record.rateBuyer,jdbcType=TINYINT},
+      rate_seller = #{record.rateSeller,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="po.Order" >
+    update order
+    <set >
+      <if test="taskId != null" >
+        task_id = #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="receiverId != null" >
+        receiver_id = #{receiverId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="taskStatus != null" >
+        task_status = #{taskStatus,jdbcType=TINYINT},
+      </if>
+      <if test="commentStatus != null" >
+        comment_status = #{commentStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="commentBuyer != null" >
+        comment_buyer = #{commentBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="commentSeller != null" >
+        comment_seller = #{commentSeller,jdbcType=VARCHAR},
+      </if>
+      <if test="rateBuyer != null" >
+        rate_buyer = #{rateBuyer,jdbcType=TINYINT},
+      </if>
+      <if test="rateSeller != null" >
+        rate_seller = #{rateSeller,jdbcType=TINYINT},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="po.Order" >
+    update order
+    set task_id = #{taskId,jdbcType=INTEGER},
+      receiver_id = #{receiverId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DOUBLE},
+      task_status = #{taskStatus,jdbcType=TINYINT},
+      comment_status = #{commentStatus,jdbcType=SMALLINT},
+      comment_buyer = #{commentBuyer,jdbcType=VARCHAR},
+      comment_seller = #{commentSeller,jdbcType=VARCHAR},
+      rate_buyer = #{rateBuyer,jdbcType=TINYINT},
+      rate_seller = #{rateSeller,jdbcType=TINYINT}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>
