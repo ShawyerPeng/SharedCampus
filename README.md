@@ -309,11 +309,11 @@ http://localhost:8080/follow/getAllCollects?pageNo=1&pageSize=20
 ## Order
 请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
 --- | --- | --- | --- | ---
-`/order/insert` | | | POST | 
-`/order/getPublishedOrders` | 获取所有发出任务的订单 | | POST |
-`/order/getReceivedOrders` | 获取所有接受任务的订单 | | POST |
-`/order/getCompletedPublishedOrders` | 获取已完成的所有发出任务的订单 | | POST |
-`/order/getCompletedReceivedOrders` | 获取已完成的所有接受任务的订单 | | POST |
+`/order/insert` | 新增订单 | taskId*, receiverId*, price* | POST | 
+`/order/queryPublishedOrders` | 根据订单状态查询所有发出任务的订单 | receiverId*, orderStatus* | GET |
+`/order/queryReceivedOrders` | 根据订单状态查询所有接受任务的订单 | publisherId | GET |
+`/order/` |  | | POST |
+`/order/` |  | | POST |
 
 ### insert
 http://118.89.142.148:8080/order/insert
@@ -341,12 +341,12 @@ http://118.89.142.148:8080/order/queryReceivedOrders?pageNo=1&pageSize=20
 }
 ```
 ### 
-http://118.89.142.148:8080/order/getCompletedPublishedOrders
+http://118.89.142.148:8080/order/
 ```json
 
 ```
 ### 
-http://118.89.142.148:8080/order/getCompletedReceivedOrders
+http://118.89.142.148:8080/order/
 ```json
 
 ```
