@@ -1,6 +1,7 @@
 package po;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class OrderExample {
@@ -344,63 +345,63 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andTaskStatusIsNull() {
-            addCriterion("task_status is null");
+        public Criteria andOrderStatusIsNull() {
+            addCriterion("order_status is null");
             return (Criteria) this;
         }
 
-        public Criteria andTaskStatusIsNotNull() {
-            addCriterion("task_status is not null");
+        public Criteria andOrderStatusIsNotNull() {
+            addCriterion("order_status is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTaskStatusEqualTo(Byte value) {
-            addCriterion("task_status =", value, "taskStatus");
+        public Criteria andOrderStatusEqualTo(Byte value) {
+            addCriterion("order_status =", value, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andTaskStatusNotEqualTo(Byte value) {
-            addCriterion("task_status <>", value, "taskStatus");
+        public Criteria andOrderStatusNotEqualTo(Byte value) {
+            addCriterion("order_status <>", value, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andTaskStatusGreaterThan(Byte value) {
-            addCriterion("task_status >", value, "taskStatus");
+        public Criteria andOrderStatusGreaterThan(Byte value) {
+            addCriterion("order_status >", value, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andTaskStatusGreaterThanOrEqualTo(Byte value) {
-            addCriterion("task_status >=", value, "taskStatus");
+        public Criteria andOrderStatusGreaterThanOrEqualTo(Byte value) {
+            addCriterion("order_status >=", value, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andTaskStatusLessThan(Byte value) {
-            addCriterion("task_status <", value, "taskStatus");
+        public Criteria andOrderStatusLessThan(Byte value) {
+            addCriterion("order_status <", value, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andTaskStatusLessThanOrEqualTo(Byte value) {
-            addCriterion("task_status <=", value, "taskStatus");
+        public Criteria andOrderStatusLessThanOrEqualTo(Byte value) {
+            addCriterion("order_status <=", value, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andTaskStatusIn(List<Byte> values) {
-            addCriterion("task_status in", values, "taskStatus");
+        public Criteria andOrderStatusIn(List<Byte> values) {
+            addCriterion("order_status in", values, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andTaskStatusNotIn(List<Byte> values) {
-            addCriterion("task_status not in", values, "taskStatus");
+        public Criteria andOrderStatusNotIn(List<Byte> values) {
+            addCriterion("order_status not in", values, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andTaskStatusBetween(Byte value1, Byte value2) {
-            addCriterion("task_status between", value1, value2, "taskStatus");
+        public Criteria andOrderStatusBetween(Byte value1, Byte value2) {
+            addCriterion("order_status between", value1, value2, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andTaskStatusNotBetween(Byte value1, Byte value2) {
-            addCriterion("task_status not between", value1, value2, "taskStatus");
+        public Criteria andOrderStatusNotBetween(Byte value1, Byte value2) {
+            addCriterion("order_status not between", value1, value2, "orderStatus");
             return (Criteria) this;
         }
 
@@ -414,52 +415,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andCommentStatusEqualTo(Short value) {
+        public Criteria andCommentStatusEqualTo(Byte value) {
             addCriterion("comment_status =", value, "commentStatus");
             return (Criteria) this;
         }
 
-        public Criteria andCommentStatusNotEqualTo(Short value) {
+        public Criteria andCommentStatusNotEqualTo(Byte value) {
             addCriterion("comment_status <>", value, "commentStatus");
             return (Criteria) this;
         }
 
-        public Criteria andCommentStatusGreaterThan(Short value) {
+        public Criteria andCommentStatusGreaterThan(Byte value) {
             addCriterion("comment_status >", value, "commentStatus");
             return (Criteria) this;
         }
 
-        public Criteria andCommentStatusGreaterThanOrEqualTo(Short value) {
+        public Criteria andCommentStatusGreaterThanOrEqualTo(Byte value) {
             addCriterion("comment_status >=", value, "commentStatus");
             return (Criteria) this;
         }
 
-        public Criteria andCommentStatusLessThan(Short value) {
+        public Criteria andCommentStatusLessThan(Byte value) {
             addCriterion("comment_status <", value, "commentStatus");
             return (Criteria) this;
         }
 
-        public Criteria andCommentStatusLessThanOrEqualTo(Short value) {
+        public Criteria andCommentStatusLessThanOrEqualTo(Byte value) {
             addCriterion("comment_status <=", value, "commentStatus");
             return (Criteria) this;
         }
 
-        public Criteria andCommentStatusIn(List<Short> values) {
+        public Criteria andCommentStatusIn(List<Byte> values) {
             addCriterion("comment_status in", values, "commentStatus");
             return (Criteria) this;
         }
 
-        public Criteria andCommentStatusNotIn(List<Short> values) {
+        public Criteria andCommentStatusNotIn(List<Byte> values) {
             addCriterion("comment_status not in", values, "commentStatus");
             return (Criteria) this;
         }
 
-        public Criteria andCommentStatusBetween(Short value1, Short value2) {
+        public Criteria andCommentStatusBetween(Byte value1, Byte value2) {
             addCriterion("comment_status between", value1, value2, "commentStatus");
             return (Criteria) this;
         }
 
-        public Criteria andCommentStatusNotBetween(Short value1, Short value2) {
+        public Criteria andCommentStatusNotBetween(Byte value1, Byte value2) {
             addCriterion("comment_status not between", value1, value2, "commentStatus");
             return (Criteria) this;
         }
@@ -604,6 +605,66 @@ public class OrderExample {
             return (Criteria) this;
         }
 
+        public Criteria andRateStatusIsNull() {
+            addCriterion("rate_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateStatusIsNotNull() {
+            addCriterion("rate_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateStatusEqualTo(Byte value) {
+            addCriterion("rate_status =", value, "rateStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateStatusNotEqualTo(Byte value) {
+            addCriterion("rate_status <>", value, "rateStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateStatusGreaterThan(Byte value) {
+            addCriterion("rate_status >", value, "rateStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateStatusGreaterThanOrEqualTo(Byte value) {
+            addCriterion("rate_status >=", value, "rateStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateStatusLessThan(Byte value) {
+            addCriterion("rate_status <", value, "rateStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateStatusLessThanOrEqualTo(Byte value) {
+            addCriterion("rate_status <=", value, "rateStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateStatusIn(List<Byte> values) {
+            addCriterion("rate_status in", values, "rateStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateStatusNotIn(List<Byte> values) {
+            addCriterion("rate_status not in", values, "rateStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateStatusBetween(Byte value1, Byte value2) {
+            addCriterion("rate_status between", value1, value2, "rateStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateStatusNotBetween(Byte value1, Byte value2) {
+            addCriterion("rate_status not between", value1, value2, "rateStatus");
+            return (Criteria) this;
+        }
+
         public Criteria andRateBuyerIsNull() {
             addCriterion("rate_buyer is null");
             return (Criteria) this;
@@ -721,6 +782,66 @@ public class OrderExample {
 
         public Criteria andRateSellerNotBetween(Byte value1, Byte value2) {
             addCriterion("rate_seller not between", value1, value2, "rateSeller");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTimeIsNull() {
+            addCriterion("order_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTimeIsNotNull() {
+            addCriterion("order_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTimeEqualTo(Date value) {
+            addCriterion("order_time =", value, "orderTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTimeNotEqualTo(Date value) {
+            addCriterion("order_time <>", value, "orderTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTimeGreaterThan(Date value) {
+            addCriterion("order_time >", value, "orderTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("order_time >=", value, "orderTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTimeLessThan(Date value) {
+            addCriterion("order_time <", value, "orderTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTimeLessThanOrEqualTo(Date value) {
+            addCriterion("order_time <=", value, "orderTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTimeIn(List<Date> values) {
+            addCriterion("order_time in", values, "orderTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTimeNotIn(List<Date> values) {
+            addCriterion("order_time not in", values, "orderTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTimeBetween(Date value1, Date value2) {
+            addCriterion("order_time between", value1, value2, "orderTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTimeNotBetween(Date value1, Date value2) {
+            addCriterion("order_time not between", value1, value2, "orderTime");
             return (Criteria) this;
         }
     }

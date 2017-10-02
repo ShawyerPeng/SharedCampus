@@ -28,4 +28,8 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    List<Order> selectByReceiverId(@Param("receiverId") Integer receiverId, @Param("orderStatus") Byte orderStatus);
+
+    List<Order> selectByPublisherId(@Param("publisherId") Integer publisherId, @Param("orderStatus") Byte orderStatus);
 }

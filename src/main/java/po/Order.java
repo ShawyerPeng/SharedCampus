@@ -1,25 +1,42 @@
 package po;
 
+import java.util.Date;
+
 public class Order {
     private Integer orderId;
 
     private Integer taskId;
 
+    private Integer publisherId;
+
     private Integer receiverId;
 
     private Double price;
 
-    private Byte taskStatus;
+    private Byte orderStatus;
 
-    private Short commentStatus;
+    private Byte commentStatus;
 
     private String commentBuyer;
 
     private String commentSeller;
 
+    private Byte rateStatus;
+
     private Byte rateBuyer;
 
     private Byte rateSeller;
+
+    private Date orderTime;
+
+    public Order() {
+    }
+
+    public Order(Integer taskId, Integer receiverId, Double price) {
+        this.taskId = taskId;
+        this.receiverId = receiverId;
+        this.price = price;
+    }
 
     public Integer getOrderId() {
         return orderId;
@@ -35,6 +52,14 @@ public class Order {
 
     public void setTaskId(Integer taskId) {
         this.taskId = taskId;
+    }
+
+    public Integer getPublisherId() {
+        return publisherId;
+    }
+
+    public void setPublisherId(Integer publisherId) {
+        this.publisherId = publisherId;
     }
 
     public Integer getReceiverId() {
@@ -53,19 +78,19 @@ public class Order {
         this.price = price;
     }
 
-    public Byte getTaskStatus() {
-        return taskStatus;
+    public Byte getOrderStatus() {
+        return orderStatus;
     }
 
-    public void setTaskStatus(Byte taskStatus) {
-        this.taskStatus = taskStatus;
+    public void setOrderStatus(Byte orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
-    public Short getCommentStatus() {
+    public Byte getCommentStatus() {
         return commentStatus;
     }
 
-    public void setCommentStatus(Short commentStatus) {
+    public void setCommentStatus(Byte commentStatus) {
         this.commentStatus = commentStatus;
     }
 
@@ -85,6 +110,14 @@ public class Order {
         this.commentSeller = commentSeller == null ? null : commentSeller.trim();
     }
 
+    public Byte getRateStatus() {
+        return rateStatus;
+    }
+
+    public void setRateStatus(Byte rateStatus) {
+        this.rateStatus = rateStatus;
+    }
+
     public Byte getRateBuyer() {
         return rateBuyer;
     }
@@ -99,5 +132,13 @@ public class Order {
 
     public void setRateSeller(Byte rateSeller) {
         this.rateSeller = rateSeller;
+    }
+
+    public Date getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(Date orderTime) {
+        this.orderTime = orderTime;
     }
 }

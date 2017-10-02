@@ -48,15 +48,17 @@ CREATE TABLE `comment` (
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
     `order_id` INT(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,   # 任务订单ID，主键
-    `task_id` INT(11) UNSIGNED DEFAULT NULL,                 # 任务ID
-    `receiver_id` INT(11) UNSIGNED DEFAULT NULL,         # 任务接受者ID
+    `task_id` INT(11) UNSIGNED DEFAULT NULL,        # 任务ID
+    `receiver_id` INT(11) UNSIGNED DEFAULT NULL,    # 任务接受者ID
     `price` DOUBLE DEFAULT NULL,                    # 订单金额
-    `task_status` TINYINT(4) DEFAULT NULL,          # 任务订单状态（订单生成、进行中、已完成、已取消、有纠纷）
-    `comment_status` TINYINT(4) DEFAULT NULL,      # 评价状态（买/卖家未评价1、买/卖家已评价2，如12表示买家未评价、卖家已评价）
+    `order_status` TINYINT(4) DEFAULT 1,            # 任务订单状态（订单生成1、进行中、已完成、已取消、有纠纷）
+    `comment_status` TINYINT(4) DEFAULT NULL,       # 评价状态（买/卖家未评价1、买/卖家已评价2，如12表示买家未评价、卖家已评价）
     `comment_buyer` VARCHAR(255) DEFAULT NULL,      # 买家评论（任务发布者）
     `comment_seller` VARCHAR(255) DEFAULT NULL,     # 卖家评论（任务接受者）
-    `rate_buyer` TINYINT(4) DEFAULT 5,              # 买家评分（任务发布者）
-    `rate_seller` TINYINT(4) DEFAULT 5,             # 卖家评分（任务接受者）
+    `rate_status` TINYINT(4) DEFAULT 0,             # 评分状态（买/卖家未评分1、买/卖家已评分2，如12表示买家未评分、卖家已评分）
+    `rate_buyer` TINYINT(4) DEFAULT NULL,           # 买家评分（任务发布者）
+    `rate_seller` TINYINT(4) DEFAULT NULL,          # 卖家评分（任务接受者）
+    `order_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,        # 下单时间
     CONSTRAINT `FK_TID` FOREIGN KEY (`task_id`) REFERENCES `task` (`task_id`),
     CONSTRAINT `FK_RID` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='任务订单表';
@@ -97,3 +99,15 @@ CREATE TABLE `image` (
     `pic_url` VARCHAR(255) NOT NULL DEFAULT '',                 # 图片存储相对地址
     `description` VARCHAR(255) DEFAULT ''                       # 图片描述
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='图片表';
+
+
+
+DROP TABLE IF EXISTS `collect`;
+CREATE TABLE `collect` (
+    `collect_id` INT(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,      # 任务收藏ID，主键
+    `collector_id` INT(11) UNSIGNED NOT NULL,                               # 收藏的用户
+    `task_id` INT(11) UNSIGNED NOT NULL,                                    # 收藏的任务
+    `collect_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,            # 收藏时间
+    CONSTRAINT `FK_CTID` FOREIGN KEY (`task_id`) REFERENCES `task` (`task_id`),
+    CONSTRAINT `FK_CUID` FOREIGN KEY (`collector_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='收藏表';

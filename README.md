@@ -208,10 +208,10 @@ http://118.89.142.148:8080/task/searchTaskByCategory
 ## Comment
 请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
 --- | --- | --- | --- | ---
-`/Comment/insert` | 新增评论 | taskId*, fromUid*, toUid, content* | POST | 
-`/Comment/delete` | 删除评论 | commentId* | POST |
-`/Comment/getAllComments` | 获取某用户的所有评论 | fromUid* | POST | 
-`/Comment/getTaskComments` | 获取某个任务下的所有评论 | taskId* | POST |
+`/comment/insert` | 新增评论 | taskId*, fromUid*, toUid, content* | POST | 
+`/comment/delete` | 删除评论 | commentId* | POST |
+`/comment/getAllComments` | 获取某用户的所有评论 | fromUid* | POST | 
+`/comment/getTaskComments` | 获取某个任务下的所有评论 | taskId* | POST |
 
 ### insert
 http://118.89.142.148:8080/comment/insert
@@ -257,31 +257,75 @@ http://118.89.142.148:8080/comment/getTaskComments
 }
 ```
 
+## Collect
+请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
+--- | --- | --- | --- | ---
+`/collect/insert` | 添加任务收藏 | collectorId*, taskId* | POST | 
+`/collect/delete` | 删除任务收藏 | collectId* | POST |
+`/collect/getAllCollects` | 获取所有收藏 | fromUid* | GET | 
+### insert
+http://118.89.142.148:8080/collect/insert
+```json
+{
+	"collectorId":1,
+	"taskId":2
+}
+```
+### delete
+http://118.89.142.148:8080/collect/delete
+```json
+{
+	"collectId":1
+}
+```
+### getAllCollects
+http://localhost:8080/collect/getAllCollects?pageNo=1&pageSize=20
+
 
 ## Order
 请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
 --- | --- | --- | --- | ---
-`/order/` | | | POST | 
-`/order/` | | | POST |
-`/order/` | | | POST |
-`/order/` | | | POST |
+`/order/insert` | | | POST | 
+`/order/getPublishedOrders` | 获取所有发出任务的订单 | | POST |
+`/order/getReceivedOrders` | 获取所有接受任务的订单 | | POST |
+`/order/getCompletedPublishedOrders` | 获取已完成的所有发出任务的订单 | | POST |
+`/order/getCompletedReceivedOrders` | 获取已完成的所有接受任务的订单 | | POST |
 
 ### 
-http://118.89.142.148:8080/order/
+http://118.89.142.148:8080/order/insert
+```json
+{
+	"taskId":1,
+	"receiverId":2,
+	"price":998
+}
+```
+### queryPublishedOrders
+http://118.89.142.148:8080/order/queryPublishedOrders?pageNo=1&pageSize=20
+```json
+{
+	"receiverId":2,
+	"orderStatus":1
+}
+```
+### queryReceivedOrders
+http://118.89.142.148:8080/order/queryReceivedOrders?pageNo=1&pageSize=20
+```json
+{
+	"publisherId":2,
+	"orderStatus":1
+}
+```
+### 
+http://118.89.142.148:8080/order/getCompletedPublishedOrders
 ```json
 
 ```
 ### 
-http://118.89.142.148:8080/order/
+http://118.89.142.148:8080/order/getCompletedReceivedOrders
 ```json
 
 ```
-### 
-http://118.89.142.148:8080/order/
-```json
-
-```
-
 
 ## Image
 非JSON格式！！！请用form-data格式传输！！！  
