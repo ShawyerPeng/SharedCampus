@@ -9,4 +9,6 @@ public interface OrderService {
     PagedResult<Order> getOrdersByReceiverId(Integer receiverId, Byte orderStatus, Integer pageNo, Integer pageSize);
 
     PagedResult<Order> getOrdersByPublisherId(Integer publisherId, Byte orderStatus, Integer pageNo, Integer pageSize);
+
+
 }

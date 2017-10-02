@@ -208,9 +208,9 @@ http://118.89.142.148:8080/task/searchTaskByCategory
 ## Comment
 请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
 --- | --- | --- | --- | ---
-`/comment/insert` | 新增评论 | taskId*, fromUid*, toUid, content* | POST | 
+`/comment/insert` | 新增评论 | taskId*, fromUid*, toUid, content* | POST |
 `/comment/delete` | 删除评论 | commentId* | POST |
-`/comment/getAllComments` | 获取某用户的所有评论 | fromUid* | POST | 
+`/comment/getAllComments` | 获取某用户的所有评论 | fromUid* | POST |
 `/comment/getTaskComments` | 获取某个任务下的所有评论 | taskId* | POST |
 
 ### insert
@@ -260,9 +260,9 @@ http://118.89.142.148:8080/comment/getTaskComments
 ## Collect
 请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
 --- | --- | --- | --- | ---
-`/collect/insert` | 添加任务收藏 | collectorId*, taskId* | POST | 
+`/collect/insert` | 添加任务收藏 | collectorId*, taskId* | POST |
 `/collect/delete` | 删除任务收藏 | collectId* | POST |
-`/collect/getAllCollects` | 获取所有收藏 | pageNo*, pageSize* | GET | 
+`/collect/getAllCollects` | 获取所有收藏 | pageNo*, pageSize* | GET |
 ### insert
 http://118.89.142.148:8080/collect/insert
 ```json
@@ -284,9 +284,9 @@ http://localhost:8080/collect/getAllCollects?pageNo=1&pageSize=20
 ## Follow
 请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
 --- | --- | --- | --- | ---
-`/follow/insert` | 添加任务收藏 | followerId*, followedId* | POST | 
-`/follow/delete` | 删除任务收藏 | followId* | POST |
-`/follow/getAllCollects` | 获取所有收藏 | pageNo*, pageSize* | GET | 
+`/follow/insert` | 添加任务关注 | followerId*, followedId* | POST | 
+`/follow/delete` | 删除任务关注 | followId* | POST |
+`/follow/getAllCollects` | 获取所有关注 | pageNo*, pageSize* | GET | 
 ### insert
 http://118.89.142.148:8080/follow/insert
 ```json
@@ -315,7 +315,7 @@ http://localhost:8080/follow/getAllCollects?pageNo=1&pageSize=20
 `/order/getCompletedPublishedOrders` | 获取已完成的所有发出任务的订单 | | POST |
 `/order/getCompletedReceivedOrders` | 获取已完成的所有接受任务的订单 | | POST |
 
-### 
+### insert
 http://118.89.142.148:8080/order/insert
 ```json
 {
@@ -407,7 +407,7 @@ http://118.89.142.148:8080/image/uploadWithDescription
 | counts       | mediumint(8)     | NO   |     | 0                   |                |
 | starttime    | timestamp        | NO   |     | 1970-01-02 00:00:00 |                |
 | endtime      | timestamp        | NO   |     | 1970-01-02 00:00:00 |                |
-| pic_url      | varchar(127)     | YES  |     |                     |                |
+| pic          | varchar(127)     | YES  |     |                     |                |
 | pubtime      | timestamp        | NO   |     | CURRENT_TIMESTAMP   |                |
 | is_finished  | tinyint(4)       | NO   |     | 0                   |                |
 +--------------+------------------+------+-----+---------------------+----------------+
@@ -425,22 +425,46 @@ http://118.89.142.148:8080/image/uploadWithDescription
 | send_time  | timestamp        | NO   |     | CURRENT_TIMESTAMP |                |
 +------------+------------------+------+-----+-------------------+----------------+
 ```
+## Collect
+```
++--------------+------------------+------+-----+-------------------+----------------+
+| Field        | Type             | Null | Key | Default           | Extra          |
++--------------+------------------+------+-----+-------------------+----------------+
+| collect_id   | int(11) unsigned | NO   | PRI | NULL              | auto_increment |
+| collector_id | int(11) unsigned | NO   | MUL | NULL              |                |
+| task_id      | int(11) unsigned | NO   | MUL | NULL              |                |
+| collect_time | timestamp        | NO   |     | CURRENT_TIMESTAMP |                |
++--------------+------------------+------+-----+-------------------+----------------+
+```
+## Follow
+```
++-------------+------------------+------+-----+-------------------+----------------+
+| Field       | Type             | Null | Key | Default           | Extra          |
++-------------+------------------+------+-----+-------------------+----------------+
+| follow_id   | int(11) unsigned | NO   | PRI | NULL              | auto_increment |
+| follower_id | int(11) unsigned | NO   |     | NULL              |                |
+| followed_id | int(11) unsigned | NO   |     | NULL              |                |
+| follow_time | timestamp        | NO   |     | CURRENT_TIMESTAMP |                |
++-------------+------------------+------+-----+-------------------+----------------+
+```
 ## Order
 ```
-+----------------+------------------+------+-----+---------+----------------+
-| Field          | Type             | Null | Key | Default | Extra          |
-+----------------+------------------+------+-----+---------+----------------+
-| order_id       | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
-| task_id        | int(11) unsigned | YES  | MUL | NULL    |                |
-| receiver_id    | int(11) unsigned | YES  | MUL | NULL    |                |
-| price          | double           | YES  |     | NULL    |                |
-| task_status    | tinyint(4)       | YES  |     | NULL    |                |
-| comment_status | tinyint(4)       | YES  |     | NULL    |                |
-| comment_buyer  | varchar(255)     | YES  |     | NULL    |                |
-| comment_seller | varchar(255)     | YES  |     | NULL    |                |
-| rate_buyer     | tinyint(4)       | YES  |     | 5       |                |
-| rate_seller    | tinyint(4)       | YES  |     | 5       |                |
-+----------------+------------------+------+-----+---------+----------------+
++----------------+------------------+------+-----+-------------------+----------------+
+| Field          | Type             | Null | Key | Default           | Extra          |
++----------------+------------------+------+-----+-------------------+----------------+
+| order_id       | int(11) unsigned | NO   | PRI | NULL              | auto_increment |
+| task_id        | int(11) unsigned | YES  | MUL | NULL              |                |
+| receiver_id    | int(11) unsigned | YES  | MUL | NULL              |                |
+| price          | double           | YES  |     | NULL              |                |
+| order_status   | tinyint(4)       | YES  |     | 1                 |                |
+| comment_status | tinyint(4)       | YES  |     | NULL              |                |
+| comment_buyer  | varchar(255)     | YES  |     | NULL              |                |
+| comment_seller | varchar(255)     | YES  |     | NULL              |                |
+| rate_status    | tinyint(4)       | YES  |     | 0                 |                |
+| rate_buyer     | tinyint(4)       | YES  |     | NULL              |                |
+| rate_seller    | tinyint(4)       | YES  |     | NULL              |                |
+| order_time     | timestamp        | NO   |     | CURRENT_TIMESTAMP |                |
++----------------+------------------+------+-----+-------------------+----------------+
 ```
 ## Image
 ```
