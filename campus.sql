@@ -111,3 +111,11 @@ CREATE TABLE `collect` (
     CONSTRAINT `FK_CTID` FOREIGN KEY (`task_id`) REFERENCES `task` (`task_id`),
     CONSTRAINT `FK_CUID` FOREIGN KEY (`collector_id`) REFERENCES `user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='收藏表';
+
+DROP TABLE IF EXISTS `follow`;
+CREATE TABLE `follow` (
+    `follow_id` INT(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,       # 关注ID，主键
+    `follower_id` INT(11) UNSIGNED NOT NULL,                                # 用户ID
+    `followed_id` INT(11) UNSIGNED NOT NULL,                                # 被关注的用户ID
+    `follow_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP              # 关注时间
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='关注表';

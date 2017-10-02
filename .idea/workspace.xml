@@ -2,23 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08e2253c-f8e7-45b1-ac0f-6d8d79f0e3b1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/controller/CollectController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/mapper/CollectMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/mapper/CollectMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/po/Collect.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/po/CollectExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/service/CollectService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/service/impl/CollectServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/controller/FollowController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/mapper/FollowMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/mapper/FollowMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/po/Follow.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/po/FollowExample.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/service/FollowService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/service/impl/FollowServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/campus.sql" afterPath="$PROJECT_DIR$/campus.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/controller/OrderController.java" afterPath="$PROJECT_DIR$/src/main/java/controller/OrderController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mapper/OrderMapper.java" afterPath="$PROJECT_DIR$/src/main/java/mapper/OrderMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mapper/OrderMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/mapper/OrderMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/po/Order.java" afterPath="$PROJECT_DIR$/src/main/java/po/Order.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/po/OrderExample.java" afterPath="$PROJECT_DIR$/src/main/java/po/OrderExample.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/service/OrderService.java" afterPath="$PROJECT_DIR$/src/main/java/service/OrderService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/service/impl/OrderServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/service/impl/OrderServiceImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -70,64 +63,41 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="OrderMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/mapper/OrderMapper.xml">
+      <file leaf-file-name="FollowMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/mapper/FollowMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="324" column="0" lean-forward="true" selection-start-line="324" selection-start-column="0" selection-end-line="324" selection-end-column="0" />
-              <folding>
-                <marker date="1506949396644" expanded="true" signature="4180:4294" ph="select from order" />
-                <marker date="1506949396644" expanded="true" signature="4381:4449" ph="delete from " />
-                <marker date="1506949396644" expanded="true" signature="4531:4550" ph="delete from " />
-                <marker date="1506949396644" expanded="true" signature="4709:5326" ph="insert into order... " />
-                <marker date="1506949396644" expanded="true" signature="7583:7611" ph="select count... order" />
-                <marker date="1506949396644" expanded="true" signature="9393:10106" ph="update order... " />
-                <marker date="1506949396644" expanded="true" signature="10296:11519" ph="update order... " />
-                <marker date="1506949396644" expanded="true" signature="11597:12229" ph="update order... " />
-                <marker date="1506949396644" expanded="true" signature="12332:12504" ph="select from order" />
-                <marker date="1506949396644" expanded="true" signature="12603:12773" ph="select from order" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrderService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/service/OrderService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="10" column="119" lean-forward="true" selection-start-line="10" selection-start-column="119" selection-end-line="10" selection-end-column="119" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TaskServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/service/impl/TaskServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="55" column="8" lean-forward="true" selection-start-line="55" selection-start-column="8" selection-end-line="59" selection-end-column="67" />
+            <state relative-caret-position="567">
+              <caret line="31" column="36" lean-forward="true" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CollectMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/mapper/CollectMapper.java">
+      <file leaf-file-name="FollowMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/mapper/FollowMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="31" column="35" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="35" />
-              <folding />
+            <state relative-caret-position="379">
+              <caret line="202" column="24" lean-forward="true" selection-start-line="202" selection-start-column="24" selection-end-line="202" selection-end-column="24" />
+              <folding>
+                <marker date="1506953591059" expanded="true" signature="3469:3584" ph="select from follow" />
+                <marker date="1506953591059" expanded="true" signature="3671:3740" ph="delete from " />
+                <marker date="1506953591059" expanded="true" signature="3823:3841" ph="delete from " />
+                <marker date="1506953591059" expanded="true" signature="4001:4224" ph="insert into follow... " />
+                <marker date="1506953591059" expanded="true" signature="5208:5235" ph="select count... follow" />
+                <marker date="1506953591059" expanded="true" signature="6083:6331" ph="update follo... " />
+                <marker date="1506953591059" expanded="true" signature="6522:6922" ph="update follo... " />
+                <marker date="1506953591059" expanded="true" signature="7001:7224" ph="update follo... " />
+                <marker date="1506953591059" expanded="true" signature="7303:7396" ph="select from follow" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CollectService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/service/CollectService.java">
+      <file leaf-file-name="FollowService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/service/FollowService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="10" column="74" lean-forward="true" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
+              <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -135,27 +105,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CollectServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/service/impl/CollectServiceImpl.java">
+      <file leaf-file-name="FollowServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/service/impl/FollowServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="568">
-              <caret line="31" column="73" lean-forward="true" selection-start-line="31" selection-start-column="73" selection-end-line="31" selection-end-column="73" />
+            <state relative-caret-position="630">
+              <caret line="30" column="47" lean-forward="true" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#486#487#0" expanded="true" />
-                <element signature="e#538#539#0" expanded="true" />
-                <element signature="e#603#604#0" expanded="true" />
-                <element signature="e#669#670#0" expanded="true" />
+                <element signature="e#476#477#0" expanded="true" />
+                <element signature="e#526#527#0" expanded="true" />
+                <element signature="e#589#590#0" expanded="true" />
+                <element signature="e#653#654#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CollectController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/CollectController.java">
+      <file leaf-file-name="FollowController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/FollowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="61" column="28" lean-forward="false" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
+            <state relative-caret-position="403">
+              <caret line="64" column="61" lean-forward="true" selection-start-line="64" selection-start-column="61" selection-end-line="64" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -231,12 +201,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/jelly-api/src/main/java/transport/AcceptorHandler.java" />
-        <option value="$PROJECT_DIR$/jelly-api/src/main/java/test/ClientStrap.java" />
-        <option value="$PROJECT_DIR$/src/main/java/utils/Test.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/JellyController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/service/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/po/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/po/Task.java" />
@@ -275,13 +239,19 @@
         <option value="$PROJECT_DIR$/src/main/java/mapper/OrderMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/mapper/OrderMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/service/impl/OrderServiceImpl.java" />
-        <option value="$PROJECT_DIR$/campus.sql" />
         <option value="$PROJECT_DIR$/src/main/java/po/Collect.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/CollectService.java" />
         <option value="$PROJECT_DIR$/src/main/java/mapper/CollectMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/mapper/CollectMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/service/impl/CollectServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/CollectController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/FollowService.java" />
+        <option value="$PROJECT_DIR$/campus.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/po/Follow.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/impl/FollowServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mapper/FollowMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mapper/FollowMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/FollowController.java" />
       </list>
     </option>
   </component>
@@ -1270,16 +1240,15 @@
       <workItem from="1506578556733" duration="5124000" />
       <workItem from="1506728772766" duration="26250000" />
       <workItem from="1506766243717" duration="11784000" />
-      <workItem from="1506926015724" duration="14901000" />
+      <workItem from="1506926015724" duration="17479000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169131000" />
+    <option name="totallyTimeSpent" value="171709000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="69" y="-9" width="1860" height="1098" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1290,7 +1259,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963374" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963374" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3263041" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3263041" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963374" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963374" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1358,95 +1327,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/CommentMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="240" column="28" lean-forward="false" selection-start-line="240" selection-start-column="22" selection-end-line="240" selection-end-column="28" />
-          <folding>
-            <marker date="1506750603108" expanded="true" signature="3603:3721" ph="select from comment" />
-            <marker date="1506750603108" expanded="true" signature="3808:3880" ph="delete from " />
-            <marker date="1506750603108" expanded="true" signature="3964:3983" ph="delete from " />
-            <marker date="1506750603108" expanded="true" signature="4144:4439" ph="insert into comment... " />
-            <marker date="1506750603108" expanded="true" signature="5683:5711" ph="select count... comment" />
-            <marker date="1506750603108" expanded="true" signature="6747:7081" ph="update comme... " />
-            <marker date="1506750603108" expanded="true" signature="7273:7832" ph="update comme... " />
-            <marker date="1506750603108" expanded="true" signature="7912:8207" ph="update comme... " />
-            <marker date="1506750603108" expanded="true" signature="8319:8432" ph="select from comment" />
-            <marker date="1506750603108" expanded="true" signature="8540:8651" ph="select from comment" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/CommentMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="33" column="47" lean-forward="false" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/impl/MessageServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="229">
-            <caret line="183" column="26" lean-forward="true" selection-start-line="183" selection-start-column="26" selection-end-line="183" selection-end-column="26" />
-            <folding>
-              <marker date="1506951647884" expanded="true" signature="782:827" ph="{&quot;userName&quot;: &quot;admin&quot;...}" />
-              <marker date="1506951647884" expanded="true" signature="888:933" ph="{&quot;userName&quot;: &quot;admin&quot;...}" />
-              <marker date="1506951647884" expanded="true" signature="994:1017" ph="{&quot;userName&quot;: &quot;admin&quot;...}" />
-              <marker date="1506951647884" expanded="true" signature="1041:1086" ph="{&quot;userName&quot;: &quot;admin&quot;...}" />
-              <marker date="1506951647884" expanded="true" signature="1157:1198" ph="{&quot;userName&quot;: &quot;admin&quot;...}" />
-              <marker date="1506951647884" expanded="true" signature="1257:1412" ph="{&quot;userName&quot;: &quot;admin&quot;...}" />
-              <marker date="1506951647884" expanded="true" signature="1477:1500" ph="{&quot;userName&quot;: &quot;admin&quot;...}" />
-              <marker date="1506951647884" expanded="true" signature="2337:2513" ph="{&quot;publisherId&quot;: 1...}" />
-              <marker date="1506951647884" expanded="true" signature="2590:2785" ph="{&quot;publisherId&quot;: 1...}" />
-              <marker date="1506951647884" expanded="true" signature="2844:3031" ph="{&quot;taskId&quot;: 8...}" />
-              <marker date="1506951647884" expanded="true" signature="3408:3410" ph="{&quot;taskId&quot;: 8...}" />
-              <marker date="1506951647884" expanded="true" signature="3483:3503" ph="{&quot;publisherId&quot;: 1...}" />
-              <marker date="1506951647884" expanded="true" signature="3592:3612" ph="{&quot;publisherId&quot;: 1...}" />
-              <marker date="1506951647884" expanded="true" signature="3697:3717" ph="{&quot;publisherId&quot;: 1...}" />
-              <marker date="1506951647884" expanded="true" signature="3802:3823" ph="{&quot;title&quot;: &quot;这是任务标题&quot;...}" />
-              <marker date="1506951647884" expanded="true" signature="3915:3939" ph="{&quot;category&quot;: &quot;这是任务分类&quot;...}" />
-              <marker date="1506951647884" expanded="true" signature="4326:4389" ph="{&quot;taskId&quot;: 1...}" />
-              <marker date="1506951647884" expanded="true" signature="4408:4468" ph="{&quot;taskId&quot;: 1...}" />
-              <marker date="1506951647884" expanded="true" signature="4534:4552" ph="{&quot;commentId&quot;: 1...}" />
-              <marker date="1506951647884" expanded="true" signature="4634:4650" ph="{&quot;fromUid&quot;: 1...}" />
-              <marker date="1506951647884" expanded="true" signature="4735:4750" ph="{&quot;taskId&quot;: 1...}" />
-            </folding>
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/CommentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="28" column="86" lean-forward="false" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="99" lean-forward="true" selection-start-line="1" selection-start-column="99" selection-end-line="1" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jelly-api/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-21">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/out/campus.sql" />
     <entry file="file://$PROJECT_DIR$/out/artifacts/Campus_war_exploded/campus.sql">
       <provider selected="true" editor-type-id="text-editor">
@@ -1683,14 +1563,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/campus.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="109" column="64" lean-forward="false" selection-start-line="109" selection-start-column="64" selection-end-line="109" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/po/CollectExample.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1732,16 +1604,6 @@
         <state relative-caret-position="242">
           <caret line="55" column="8" lean-forward="true" selection-start-line="55" selection-start-column="8" selection-end-line="59" selection-end-column="67" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/CollectService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="74" lean-forward="true" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1807,10 +1669,79 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/CollectController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="65" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/CollectService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="10" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/campus.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="114" column="24" lean-forward="true" selection-start-line="114" selection-start-column="24" selection-end-line="114" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/po/FollowExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/po/Follow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="59" lean-forward="false" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
+          <folding>
+            <element signature="e#635#636#0" expanded="true" />
+            <element signature="e#679#680#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/impl/CollectServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="31" column="73" lean-forward="true" selection-start-line="28" selection-start-column="8" selection-end-line="31" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#486#487#0" expanded="true" />
+            <element signature="e#538#539#0" expanded="true" />
+            <element signature="e#603#604#0" expanded="true" />
+            <element signature="e#669#670#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/CollectMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="31" column="35" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mapper/CollectMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="197" column="59" lean-forward="true" selection-start-line="197" selection-start-column="59" selection-end-line="197" selection-end-column="59" />
+        <state relative-caret-position="326">
+          <caret line="197" column="2" lean-forward="true" selection-start-line="197" selection-start-column="2" selection-end-line="202" selection-end-column="11" />
           <folding>
             <marker date="1506951416470" expanded="true" signature="3470:3588" ph="select from collect" />
             <marker date="1506951416470" expanded="true" signature="3675:3747" ph="delete from " />
@@ -1825,32 +1756,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/CollectMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/FollowMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="31" column="35" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/impl/CollectServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="31" column="73" lean-forward="true" selection-start-line="31" selection-start-column="73" selection-end-line="31" selection-end-column="73" />
+        <state relative-caret-position="379">
+          <caret line="202" column="24" lean-forward="true" selection-start-line="202" selection-start-column="24" selection-end-line="202" selection-end-column="24" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#486#487#0" expanded="true" />
-            <element signature="e#538#539#0" expanded="true" />
-            <element signature="e#603#604#0" expanded="true" />
-            <element signature="e#669#670#0" expanded="true" />
+            <marker date="1506953591059" expanded="true" signature="3469:3584" ph="select from follow" />
+            <marker date="1506953591059" expanded="true" signature="3671:3740" ph="delete from " />
+            <marker date="1506953591059" expanded="true" signature="3823:3841" ph="delete from " />
+            <marker date="1506953591059" expanded="true" signature="4001:4224" ph="insert into follow... " />
+            <marker date="1506953591059" expanded="true" signature="5208:5235" ph="select count... follow" />
+            <marker date="1506953591059" expanded="true" signature="6083:6331" ph="update follo... " />
+            <marker date="1506953591059" expanded="true" signature="6522:6922" ph="update follo... " />
+            <marker date="1506953591059" expanded="true" signature="7001:7224" ph="update follo... " />
+            <marker date="1506953591059" expanded="true" signature="7303:7396" ph="select from follow" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/CollectController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/FollowMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="61" column="28" lean-forward="false" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
+        <state relative-caret-position="567">
+          <caret line="31" column="36" lean-forward="true" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/FollowService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/impl/FollowServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="30" column="47" lean-forward="true" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#476#477#0" expanded="true" />
+            <element signature="e#526#527#0" expanded="true" />
+            <element signature="e#589#590#0" expanded="true" />
+            <element signature="e#653#654#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/FollowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="64" column="61" lean-forward="true" selection-start-line="64" selection-start-column="61" selection-end-line="64" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

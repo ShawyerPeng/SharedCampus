@@ -262,7 +262,7 @@ http://118.89.142.148:8080/comment/getTaskComments
 --- | --- | --- | --- | ---
 `/collect/insert` | 添加任务收藏 | collectorId*, taskId* | POST | 
 `/collect/delete` | 删除任务收藏 | collectId* | POST |
-`/collect/getAllCollects` | 获取所有收藏 | fromUid* | GET | 
+`/collect/getAllCollects` | 获取所有收藏 | pageNo*, pageSize* | GET | 
 ### insert
 http://118.89.142.148:8080/collect/insert
 ```json
@@ -280,6 +280,30 @@ http://118.89.142.148:8080/collect/delete
 ```
 ### getAllCollects
 http://localhost:8080/collect/getAllCollects?pageNo=1&pageSize=20
+
+## Follow
+请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
+--- | --- | --- | --- | ---
+`/follow/insert` | 添加任务收藏 | followerId*, followedId* | POST | 
+`/follow/delete` | 删除任务收藏 | followId* | POST |
+`/follow/getAllCollects` | 获取所有收藏 | pageNo*, pageSize* | GET | 
+### insert
+http://118.89.142.148:8080/follow/insert
+```json
+{
+	"followerId":1,
+	"followedId":2
+}
+```
+### delete
+http://118.89.142.148:8080/follow/delete
+```json
+{
+	"followId":1
+}
+```
+### getAllCollects
+http://localhost:8080/follow/getAllCollects?pageNo=1&pageSize=20
 
 
 ## Order
