@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="remoteDeploymentFS://&lt;f6519cb3-2935-4ae5-aa8c-ec2e11fd3137&gt;/home/ubuntu/web/campus.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/campus.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/out/artifacts/Campus_war_exploded/campus.sql" dialect="MySQL" />
   </component>
 </project>

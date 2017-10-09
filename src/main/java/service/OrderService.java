@@ -10,5 +10,4 @@ public interface OrderService {
 
     PagedResult<Order> getOrdersByPublisherId(Integer publisherId, Byte orderStatus, Integer pageNo, Integer pageSize);
 
-
 }

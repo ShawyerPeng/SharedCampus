@@ -273,4 +273,10 @@ public class UserController {
         return userService.getUserByUserName(userName);
     }
 
+    @RequestMapping("/info")
+    @ResponseBody
+    public User info(@RequestBody User user) {
+        String userName = user.getUserName();
+        return userService.getUserByUserName(userName);
+    }
 }
