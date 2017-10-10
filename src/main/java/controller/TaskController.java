@@ -141,12 +141,18 @@ public class TaskController {
         }
     }
 
+    // http://localhost:8080/task/getTaskByTaskId?taskId=1
+    @RequestMapping(value = "/getTaskByTaskId")
+    @ResponseBody
+    public Task getTaskByTaskId(@RequestBody Task task) {
+        Integer taskId = task.getTaskId();
+        return taskService.selectTaskByTaskId(taskId);
+    }
+
     // http://localhost:8080/task/getTasks?pageNo=1&pageSize=20
     @RequestMapping(value = "/getTasks")
     @ResponseBody
-    public PagedResult<Task> getTasks(@RequestBody PagedResult<Task> taskPagedResult) {
-        Integer pageNo = taskPagedResult.getPageNo();
-        Integer pageSize = taskPagedResult.getPageSize();
+    public PagedResult<Task> getTasks(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
         try {
             return taskService.queryByPage(pageNo, pageSize);
         } catch (Exception e) {
@@ -155,82 +161,84 @@ public class TaskController {
         return null;
     }
 
-    // http://localhost:8080/task/getTaskByTaskId?taskId=1
-    @RequestMapping(value = "/getTaskByTaskId")
-    @ResponseBody
-    public List<Task> getTaskByTaskId(@RequestBody Task task) {
-        Integer taskId = task.getTaskId();
-        return taskService.selectTask(taskId);
-    }
-
     // http://localhost:8080/task/getAllTasksByPublisherId?publisherId=1
-    @RequestMapping(value = "/getAllTasksByPublisherId")
+    @RequestMapping(value = "/getAllTasks")
     @ResponseBody
-    public List<Task> getAllTasksByPublisherId(@RequestBody Task task) {
+    public PagedResult<Task> getAllTasksByPublisherId(@RequestBody Task task,
+                                                      @RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
         Integer publisherId = task.getPublisherId();
-        return taskService.selectTask(publisherId);
+        return taskService.selectTask(publisherId, pageNo, pageSize);
     }
 
     @RequestMapping(value = "/getAllTasks2")
     @ResponseBody
-    public List<Task> getAllTasksByPublisherId2(@RequestParam("publisherId") Integer publisherId) {
-        return taskService.selectTask(publisherId);
+    public PagedResult<Task> getAllTasksByPublisherId2(@RequestParam("publisherId") Integer publisherId,
+                                                       @RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
+        return taskService.selectTask(publisherId, pageNo, pageSize);
     }
 
     // http://localhost:8080/task/getUncompletedTasks?publisherId=1
     @RequestMapping(value = "/getUncompletedTasks")
     @ResponseBody
-    public List<Task> getUncompletedTasksByPublisherId(@RequestBody Task task) {
+    public PagedResult<Task> getUncompletedTasksByPublisherId(@RequestBody Task task,
+                                                              @RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
         Integer publisherId = task.getPublisherId();
-        return taskService.selectUncompletedTask(publisherId);
+        return taskService.selectUncompletedTask(publisherId, pageNo, pageSize);
     }
 
     @RequestMapping(value = "/getUncompletedTasks2")
     @ResponseBody
-    public List<Task> getUncompletedTasksByPublisherId2(@RequestParam("publisherId") Integer publisherId) {
-        return taskService.selectUncompletedTask(publisherId);
+    public PagedResult<Task> getUncompletedTasksByPublisherId2(@RequestParam("publisherId") Integer publisherId,
+                                                               @RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
+        return taskService.selectUncompletedTask(publisherId, pageNo, pageSize);
     }
 
     // http://localhost:8080/task/getCompletedTasks?publisherId=1
     @RequestMapping(value = "/getCompletedTasks")
     @ResponseBody
-    public List<Task> getCompletedTasksByPublisherId(@RequestBody Task task) {
+    public PagedResult<Task> getCompletedTasksByPublisherId(@RequestBody Task task,
+                                                            @RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
         Integer publisherId = task.getPublisherId();
-        return taskService.selectCompletedTask(publisherId);
+        return taskService.selectCompletedTask(publisherId, pageNo, pageSize);
     }
 
     @RequestMapping(value = "/getCompletedTasks2")
     @ResponseBody
-    public List<Task> getCompletedTasksByPublisherId2(@RequestParam("publisherId") Integer publisherId) {
-        return taskService.selectCompletedTask(publisherId);
+    public PagedResult<Task> getCompletedTasksByPublisherId2(@RequestParam("publisherId") Integer publisherId,
+                                                             @RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
+        return taskService.selectCompletedTask(publisherId, pageNo, pageSize);
     }
 
     // http://localhost:8080/task/searchTaskByTitle?title=
     @RequestMapping(value = "/searchTaskByTitle")
     @ResponseBody
-    public List<Task> searchTaskByTitle(@RequestBody Task task) {
+    public PagedResult<Task> searchTaskByTitle(@RequestBody Task task,
+                                               @RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
         String title = task.getTitle();
-        return taskService.selectTaskByTitle(title);
+        return taskService.selectTaskByTitle(title, pageNo, pageSize);
     }
 
     @RequestMapping(value = "/searchTaskByTitle2")
     @ResponseBody
-    public List<Task> searchTaskByTitle2(@RequestParam("title") String title) {
-        return taskService.selectTaskByTitle(title);
+    public PagedResult<Task> searchTaskByTitle2(@RequestParam("title") String title,
+                                                @RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
+        return taskService.selectTaskByTitle(title, pageNo, pageSize);
     }
 
     // http://localhost:8080/task/searchTaskByCategory?category=
     @RequestMapping(value = "/searchTaskByCategory")
     @ResponseBody
-    public List<Task> searchTaskByCategory(@RequestBody Task task) {
+    public PagedResult<Task> searchTaskByCategory(@RequestBody Task task,
+                                                  @RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
         String category = task.getCategory().toString();
-        return taskService.selectTaskByCategory(category);
+        return taskService.selectTaskByCategory(category, pageNo, pageSize);
     }
 
     @RequestMapping(value = "/searchTaskByCategory2")
     @ResponseBody
-    public List<Task> searchTaskByCategory2(@RequestParam("category") Integer category) {
-        return taskService.selectTaskByCategory(category.toString());
+    public PagedResult<Task> searchTaskByCategory2(@RequestParam("category") Integer category,
+                                                   @RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
+        return taskService.selectTaskByCategory(category.toString(), pageNo, pageSize);
     }
 
 }

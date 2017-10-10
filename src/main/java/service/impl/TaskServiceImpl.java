@@ -66,27 +66,43 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> selectTask(Integer publisherId) {
-        return taskMapper.selectByPublisherId(publisherId);
+    public PagedResult<Task> selectTask(Integer publisherId, Integer pageNo, Integer pageSize) {
+        return BeanUtil.toPagedResult(taskMapper.selectByPublisherId(publisherId));
     }
 
     @Override
-    public List<Task> selectUncompletedTask(Integer publisherId) {
-        return taskMapper.selectUncompletedByPublisherId(publisherId);
+    public PagedResult<Task> selectUncompletedTask(Integer publisherId, Integer pageNo, Integer pageSize) {
+        pageNo = (pageNo == null ? 1 : pageNo);
+        pageSize = (pageSize == null ? 10 : pageSize);
+        PageHelper.startPage(pageNo, pageSize);
+
+        return BeanUtil.toPagedResult(taskMapper.selectUncompletedByPublisherId(publisherId));
     }
 
     @Override
-    public List<Task> selectCompletedTask(Integer publisherId) {
-        return taskMapper.selectCompletedByPublisherId(publisherId);
+    public PagedResult<Task> selectCompletedTask(Integer publisherId, Integer pageNo, Integer pageSize) {
+        pageNo = (pageNo == null ? 1 : pageNo);
+        pageSize = (pageSize == null ? 10 : pageSize);
+        PageHelper.startPage(pageNo, pageSize);
+
+        return BeanUtil.toPagedResult(taskMapper.selectCompletedByPublisherId(publisherId));
     }
 
     @Override
-    public List<Task> selectTaskByTitle(String title) {
-        return taskMapper.selectByTitle(title);
+    public PagedResult<Task> selectTaskByTitle(String title, Integer pageNo, Integer pageSize) {
+        pageNo = (pageNo == null ? 1 : pageNo);
+        pageSize = (pageSize == null ? 10 : pageSize);
+        PageHelper.startPage(pageNo, pageSize);
+
+        return BeanUtil.toPagedResult(taskMapper.selectByTitle(title));
     }
 
     @Override
-    public List<Task> selectTaskByCategory(String category) {
+    public PagedResult<Task> selectTaskByCategory(String category, Integer pageNo, Integer pageSize) {
+        pageNo = (pageNo == null ? 1 : pageNo);
+        pageSize = (pageSize == null ? 10 : pageSize);
+        PageHelper.startPage(pageNo, pageSize);
+
         Map<String, Object> categoryMap = new HashMap<>();
         // TODO: 修改对应的分类
         categoryMap.put("1", "寻人");
@@ -106,8 +122,8 @@ public class TaskServiceImpl implements TaskService {
             }
         }
         if (categoryInteger != 0) {
-            return taskMapper.selectByCategory(categoryInteger);
+            return BeanUtil.toPagedResult(taskMapper.selectByCategory(categoryInteger));
         }
-        return new LinkedList<>();
+        return BeanUtil.toPagedResult(new LinkedList<>());
     }
 }

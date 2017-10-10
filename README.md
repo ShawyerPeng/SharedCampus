@@ -2,24 +2,6 @@
 共享校园 APP 后端
 
 # 全局状态码
-```java
-RestResult result = new RestResult();
-Map<String, Object> data = new HashMap<>();
-try {
-    userService.insertUser(userName, userPass);
-    rowCount = userService.selectRowCount();
-} catch (DuplicateKeyException e) {
-    result.setStatusCode(400);
-    result.setMessage("用户名已存在");
-    return result;
-}
-if (rowCount != 0) {
-    result.setStatusCode(200);
-    result.setMessage("注册成功");
-    return result;
-}
-return result;
-```
 状态码 | 状态码解释
 --- | ---
 200 | 请求成功
@@ -159,16 +141,16 @@ http://118.89.142.148:8080/pocket/
 请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
 --- | --- | --- | --- | ---
 `/task/insert` | 新增任务 | publisherId, title, description, category, price, counts, starttime, endtime | POST | 
-`/task/insertWithPic` | 新增任务（带图片） | publisherId, title, description, category, price, counts, starttime, endtime, pic_url | POST | 
+`/task/insertWithPic` | 新增任务（带图片） | publisherId, title, description, category, price, counts, starttime, endtime, pic | POST | 
 `/task/edit` | 修改任务信息 | taskId, publisherId, title, description, category, price, counts, starttime, endtime | POST |
 `/task/delete` | 删除任务 | taskId* | POST |
-`/task/getTasks` | 分页获取任务 | pageNo*,pageSize* | GET |
 `/task/getTaskByTaskId` | 获取单个任务信息 | taskId* | GET |
-`/task/getAllTasks` | 获取用户的所有任务 | publisherId* | GET |
-`/task/getUncompletedTasks` | 获取用户所有未完成任务 | publisherId* | GET | 
-`/task/getCompletedTasks` | 获取用户所有已完成任务 | publisherId* | GET |
-`/task/searchTaskByTitle` | 根据关键词搜索任务 | title* | GET |
-`/task/searchTaskByCategory` | 根据分类搜索任务 | category* | GET |
+`/task/getTasks?pageNo={1}&pageSize={20}` | 获取所有用户的任务（首页） | | GET |
+`/task/getAllTasks?pageNo={1}&pageSize={20}` | 获取用户的所有任务 | publisherId* | GET |
+`/task/getUncompletedTasks?pageNo={1}&pageSize={20}` | 获取用户所有未完成任务 | publisherId* | GET | 
+`/task/getCompletedTasks?pageNo={1}&pageSize={20}` | 获取用户所有已完成任务 | publisherId* | GET |
+`/task/searchTaskByTitle?pageNo={1}&pageSize={20}` | 根据关键词搜索任务 | title* | GET |
+`/task/searchTaskByCategory?pageNo={1}&pageSize={20}` | 根据分类搜索任务 | category* | GET |
 ### insert
 http://118.89.142.148:8080/task/insert
 ```json
@@ -220,14 +202,6 @@ http://118.89.142.148:8080/task/delete
 	"taskId":8
 }
 ```
-### getTasks
-http://118.89.142.148:8080/task/getTasks
-```json
-{
-	"pageNo":1,
-	"pageSize":20
-}
-```
 ### getTaskByTaskId
 http://118.89.142.148:8080/task/getTaskByTaskId
 ```json
@@ -235,29 +209,31 @@ http://118.89.142.148:8080/task/getTaskByTaskId
 	"taskId":1
 }
 ```
+### getTasks
+http://118.89.142.148:8080/task/getTasks?pageNo={1}&pageSize={20}
 ### getAllTasks
-http://118.89.142.148:8080/task/getAllTasks
+http://118.89.142.148:8080/task/getAllTasks?pageNo={1}&pageSize={20}
 ```json
 {
 	"publisherId":1
 }
 ```
 ### getUncompletedTasks
-http://118.89.142.148:8080/task/getUncompletedTasks
+http://118.89.142.148:8080/task/getUncompletedTasks?pageNo={1}&pageSize={20}
 ```json
 {
 	"publisherId":1
 }
 ```
 ### getCompletedTasks
-http://118.89.142.148:8080/task/getCompletedTasks
+http://118.89.142.148:8080/task/getCompletedTasks?pageNo={1}&pageSize={20}
 ```json
 {
 	"publisherId":1
 }
 ```
 ### searchTaskByTitle
-http://118.89.142.148:8080/task/searchTaskByTitle
+http://118.89.142.148:8080/task/searchTaskByTitle?pageNo={1}&pageSize={20}
 ```json
 {
 	"title":"这是任务标题"
@@ -265,7 +241,7 @@ http://118.89.142.148:8080/task/searchTaskByTitle
 
 ```
 ### searchTaskByCategory
-http://118.89.142.148:8080/task/searchTaskByCategory
+http://118.89.142.148:8080/task/searchTaskByCategory?pageNo={1}&pageSize={20}
 ```json
 {
 	"category":"这是任务分类"

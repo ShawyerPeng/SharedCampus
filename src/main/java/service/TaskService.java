@@ -18,17 +18,17 @@ public interface TaskService {
 
     int deleteTask(Integer taskId);
 
-    PagedResult<Task> queryByPage(Integer pageNo, Integer pageSize);
-
     Task selectTaskByTaskId(Integer taskId);
 
-    List<Task> selectTask(Integer publisherId);
+    PagedResult<Task> queryByPage(Integer pageNo, Integer pageSize);
 
-    List<Task> selectUncompletedTask(Integer publisherId);
+    PagedResult<Task> selectTask(Integer publisherId, Integer pageNo, Integer pageSize);
 
-    List<Task> selectCompletedTask(Integer publisherId);
+    PagedResult<Task> selectUncompletedTask(Integer publisherId, Integer pageNo, Integer pageSize);
 
-    List<Task> selectTaskByTitle(String title);
+    PagedResult<Task> selectCompletedTask(Integer publisherId, Integer pageNo, Integer pageSize);
 
-    List<Task> selectTaskByCategory(String category);
+    PagedResult<Task> selectTaskByTitle(String title, Integer pageNo, Integer pageSize);
+
+    PagedResult<Task> selectTaskByCategory(String category, Integer pageNo, Integer pageSize);
 }
