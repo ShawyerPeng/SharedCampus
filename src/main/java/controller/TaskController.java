@@ -5,11 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import po.PagedResult;
+import po.RestResult;
 import po.Task;
 import service.TaskService;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/task")
@@ -19,9 +22,12 @@ public class TaskController {
     @Autowired
     private UploadController uploadController;
 
-    @RequestMapping(value = "/insert", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
-    public String insert(@RequestBody Task task) throws Exception {
+    public RestResult insert(@RequestBody Task task) throws Exception {
+        RestResult result = new RestResult();
+        Map<String, Object> data = new HashMap<>();
+
         Integer publisherId = task.getPublisherId();
         String title = task.getTitle();
         String description = task.getDescription();
@@ -30,23 +36,28 @@ public class TaskController {
         Integer counts = task.getCounts();
         Date starttime = task.getStarttime();
         Date endtime = task.getEndtime();
-        taskService.insertTask(publisherId, title, description, category, price, counts, starttime, endtime);
-        return title + " " + description;
-    }
+        int success = taskService.insertTask(publisherId, title, description, category, price, counts, starttime, endtime);
 
-    @RequestMapping(value = "/insert2", method = RequestMethod.POST)
-    @ResponseBody
-    public String insert2(@RequestParam("publisherId") Integer publisherId, @RequestParam("title") String title,
-                          @RequestParam("description") String description, @RequestParam("category") Integer category,
-                          @RequestParam("price") Double price, @RequestParam("counts") Integer counts,
-                          @RequestParam("starttime") Date starttime, @RequestParam("endtime") Date endtime) throws Exception {
-        taskService.insertTask(publisherId, title, description, category, price, counts, starttime, endtime);
-        return "ok";
+        if (success == 1) {
+            result.setData(data);
+            result.setStatusCode(200);
+            result.setMessage("任务添加成功");
+            return result;
+        } else {
+            result.setData(data);
+            result.setStatusCode(400);
+            result.setMessage("任务添加失败");
+            return result;
+        }
+
     }
 
     @RequestMapping(value = "/insertWithPic", method = RequestMethod.POST)
     @ResponseBody
-    public String insertWithPic(@RequestBody Task task) throws Exception {
+    public RestResult insertWithPic(@RequestBody Task task) throws Exception {
+        RestResult result = new RestResult();
+        Map<String, Object> data = new HashMap<>();
+
         Integer publisherId = task.getPublisherId();
         String title = task.getTitle();
         String description = task.getDescription();
@@ -56,33 +67,33 @@ public class TaskController {
         Date starttime = task.getStarttime();
         Date endtime = task.getEndtime();
         String pic_url = task.getPic();
-        if (pic_url.isEmpty()) {
-            taskService.insertTask(publisherId, title, description, category, price, counts, starttime, endtime);
-        } else {
-            taskService.insertTaskWithPic(publisherId, title, description, category, price, counts, starttime, endtime, pic_url);
-        }
-        return "ok";
-    }
 
-    @RequestMapping(value = "/insertWithPic2", method = RequestMethod.POST)
-    @ResponseBody
-    public String insertWithPic2(@RequestParam("publisherId") Integer publisherId, @RequestParam("title") String title,
-                                 @RequestParam("description") String description, @RequestParam("category") Integer category,
-                                 @RequestParam("price") Double price, @RequestParam("counts") Integer counts,
-                                 @RequestParam("starttime") Date starttime, @RequestParam("endtime") Date endtime,
-                                 @RequestParam("pic") MultipartFile pic) throws Exception {
-        if (pic.isEmpty()) {
-            taskService.insertTask(publisherId, title, description, category, price, counts, starttime, endtime);
+        int success;
+        if (pic_url.isEmpty()) {
+            success = taskService.insertTask(publisherId, title, description, category, price, counts, starttime, endtime);
         } else {
-            String pic_url = uploadController.upload(pic);
-            taskService.insertTaskWithPic(publisherId, title, description, category, price, counts, starttime, endtime, pic_url);
+            success = taskService.insertTaskWithPic(publisherId, title, description, category, price, counts, starttime, endtime, pic_url);
         }
-        return "ok";
+
+        if (success == 1) {
+            result.setData(data);
+            result.setStatusCode(200);
+            result.setMessage("任务添加成功");
+            return result;
+        } else {
+            result.setData(data);
+            result.setStatusCode(400);
+            result.setMessage("任务添加失败");
+            return result;
+        }
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
-    public String edit(@RequestBody Task task) {
+    public RestResult edit(@RequestBody Task task) {
+        RestResult result = new RestResult();
+        Map<String, Object> data = new HashMap<>();
+
         Integer taskId = task.getTaskId();
         Integer publisherId = task.getPublisherId();
         String title = task.getTitle();
@@ -92,34 +103,42 @@ public class TaskController {
         Integer counts = task.getCounts();
         Date starttime = task.getStarttime();
         Date endtime = task.getEndtime();
-        taskService.updateTask(taskId, publisherId, title, description, category, price, counts, starttime, endtime);
-        return "ok";
-    }
+        int success = taskService.updateTask(taskId, publisherId, title, description,
+                category, price, counts, starttime, endtime);
 
-    @RequestMapping(value = "/edit2", method = RequestMethod.POST)
-    @ResponseBody
-    public String edit2(@RequestParam("taskId") Integer taskId,
-                        @RequestParam("publisherId") Integer publisherId, @RequestParam("title") String title,
-                        @RequestParam("description") String description, @RequestParam("category") Integer category,
-                        @RequestParam("price") Double price, @RequestParam("counts") Integer counts,
-                        @RequestParam("starttime") Date starttime, @RequestParam("endtime") Date endtime) {
-        taskService.updateTask(taskId, publisherId, title, description, category, price, counts, starttime, endtime);
-        return "ok";
+        if (success == 1) {
+            result.setData(data);
+            result.setStatusCode(200);
+            result.setMessage("任务修改成功");
+            return result;
+        } else {
+            result.setData(data);
+            result.setStatusCode(400);
+            result.setMessage("任务修改失败");
+            return result;
+        }
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public String delete(@RequestBody Task task) {
-        Integer taskId = task.getTaskId();
-        taskService.deleteTask(taskId);
-        return "ok";
-    }
+    public RestResult delete(@RequestBody Task task) {
+        RestResult result = new RestResult();
+        Map<String, Object> data = new HashMap<>();
 
-    @RequestMapping(value = "/delete2", method = RequestMethod.POST)
-    @ResponseBody
-    public String delete2(@RequestParam("taskId") Integer taskId) {
-        taskService.deleteTask(taskId);
-        return "ok";
+        Integer taskId = task.getTaskId();
+        int success = taskService.deleteTask(taskId);
+
+        if (success == 1) {
+            result.setData(data);
+            result.setStatusCode(200);
+            result.setMessage("任务删除成功");
+            return result;
+        } else {
+            result.setData(data);
+            result.setStatusCode(400);
+            result.setMessage("任务删除失败");
+            return result;
+        }
     }
 
     // http://localhost:8080/task/getTasks?pageNo=1&pageSize=20

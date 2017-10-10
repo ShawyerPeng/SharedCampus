@@ -15,8 +15,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public int insertUser(String userName, String userPass) {
-        User user = new User(userName, userPass);
+    public int insertUser(User user) {
         user.setHonesty(100);
         // 返回自增ID
         return userMapper.insert(user);

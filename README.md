@@ -2,12 +2,31 @@
 共享校园 APP 后端
 
 # 全局状态码
+```java
+RestResult result = new RestResult();
+Map<String, Object> data = new HashMap<>();
+try {
+    userService.insertUser(userName, userPass);
+    rowCount = userService.selectRowCount();
+} catch (DuplicateKeyException e) {
+    result.setStatusCode(400);
+    result.setMessage("用户名已存在");
+    return result;
+}
+if (rowCount != 0) {
+    result.setStatusCode(200);
+    result.setMessage("注册成功");
+    return result;
+}
+return result;
+```
 状态码 | 状态码解释
 --- | ---
 200 | 请求成功
-201 | 创建、修改成功（POST 方法成功新建资源）
+201 | 数据创建、修改成功（POST 方法成功新建资源）
 202 | 服务器已接受请求，但尚未处理（需要的资源无法及时建立，如异步操作）
-204 | 删除成功，没有 response body
+204 | 数据删除成功，没有 response body
+2.6 | GET 请求成功, 但是只返回一部分
 300 | 重定向
 304 | Not Modified - 用于 HTTP 缓存机制
 400 | 客户端错误（参数错误，请求格式不对，比如 body 无法解析）。通常在请求参数不合法或格式错误的时候可以返回这个状态码。
@@ -15,9 +34,10 @@
 403 | 禁止访问，用户没有权限。通常在没有权限操作资源时 (如修改 / 删除一个不属于该用户的资源时) 会用到这个状态码。
 404 | 无法找到资源。通常在找不到资源时返回这个状态码。
 405 | 用户无权使用该方法
+406 | 用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）。
 410 | 资源已不存在，适用于响应老版本 API 的调用
 415 | Unsupported Media Type错误
-422 | 验证错误
+422 | 验证错误。请求被服务器正确解析，但是包含无效字段
 429 | 请求过于频繁，可以用在客户端调用过于频繁的情况。
 500 | 服务器错误
 1000 | 通用参数错误
@@ -32,11 +52,11 @@
 --- | --- | --- | --- | ---
 `/user/register` | 用户注册 | userName*, userPass* | POST |
 `/user/login` | 用户登录 | userName*, userPass* | POST |
-`/user/check` | 验证用户名是否存在| userName* | GET |
 `/user/delete` | 删除用户账号 | userName* | POST |
 `/user/changePass` | 修改密码 | userName*, newPass* | POST |
+`/user/check` | 验证用户名是否存在| userName* | GET |
+`/user/info` | 返回某一用户的信息 | userName* | GET |
 `/user/edit` | 编辑用户信息 | userName, userPass, realname, gender, phone, email, alipay, iconimg, info, createdTime, lastLogin, honesty, balance | POST |
-`/user/getUser` | 返回某一用户的信息 | userName* | GET |
 
 ### register
 http://118.89.142.148:8080/user/register
@@ -77,7 +97,9 @@ http://118.89.142.148:8080/user/changePass
 }
 ```
 ### edit
-http://118.89.142.148:8080/user/edit
+注意：上传用户头像时，先调用`/image/upload`接口上传图片，然后获取图片的URL，最后把获取的URL作为参数同其他信息一起POST。  
+
+http://118.89.142.148:8080/user/edit  
 ```json
 {
 	"userName":"admin",
@@ -90,13 +112,47 @@ http://118.89.142.148:8080/user/edit
 	"info":"这是自我介绍"
 }
 ```
-### getUser
-http://118.89.142.148:8080/user/getUser
+### info
+http://118.89.142.148:8080/user/info
 ```json
 {
 	"userName":"admin"
 }
 ```
+
+
+## Pocket
+请求 URL | 功能描述 | 请求参数（`*`为必填项） | 请求方式 | 返回结果
+--- | --- | --- | --- | ---
+`/pocket/balance` | 查看钱包余额 | userName*, userPass* | POST |
+`/pocket/update` | 用户登录 | userName*, userPass* | POST |
+
+### balance
+http://118.89.142.148:8080/pocket/balance
+```json
+{
+	"userId":2
+}
+```
+### update
+http://118.89.142.148:8080/pocket/update
+```json
+{
+	"userId":1,
+	"amount":5
+}
+```
+### balance
+http://118.89.142.148:8080/pocket/
+```json
+
+```
+### balance
+http://118.89.142.148:8080/pocket/
+```json
+
+```
+
 
 
 ## Task
@@ -323,7 +379,7 @@ http://localhost:8080/follow/getAllCollects?pageNo=1&pageSize=20
 `/order/insert` | 新增订单 | taskId*, receiverId*, price* | POST | 
 `/order/queryPublishedOrders` | 根据订单状态查询所有发出任务的订单 | receiverId*, orderStatus* | GET |
 `/order/queryReceivedOrders` | 根据订单状态查询所有接受任务的订单 | publisherId | GET |
-`/order/` |  | | POST |
+`/order/updateOrderStatus` | 修改订单状态 | orderId*, orderStatus* | POST |
 `/order/` |  | | POST |
 
 ### insert
@@ -351,10 +407,13 @@ http://118.89.142.148:8080/order/queryReceivedOrders?pageNo=1&pageSize=20
 	"orderStatus":1
 }
 ```
-### 
-http://118.89.142.148:8080/order/
+### updateOrderStatus
+http://118.89.142.148:8080/order/updateOrderStatus
 ```json
-
+{
+	"orderId":2,
+	"orderStatus":3
+}
 ```
 ### 
 http://118.89.142.148:8080/order/

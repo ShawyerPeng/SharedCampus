@@ -14,7 +14,7 @@ CREATE TABLE `user` (
     `last_login` TIMESTAMP NOT NULL DEFAULT '1970-01-02 00:00:00' ON UPDATE CURRENT_TIMESTAMP,  # 账号最近登录时间
     `honesty` INT(4) NOT NULL DEFAULT 100,                  # 诚信值
     `balance` DOUBLE DEFAULT 0                              # 账户余额
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=10000 COMMENT='用户表';
 
 DROP TABLE IF EXISTS `task`;
 CREATE TABLE `task` (
@@ -31,7 +31,7 @@ CREATE TABLE `task` (
     `pubtime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,         # 任务发布时间
     `is_finished` TINYINT(4) NOT NULL DEFAULT 0,                    # 0：未完成，1：已完成
     CONSTRAINT `FK_PID` FOREIGN KEY (`publisher_id`) REFERENCES `user` (`user_id`)  ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='任务表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=10000 COMMENT='任务表';
 
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
@@ -79,7 +79,7 @@ CREATE TABLE `order` (
     `order_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,        # 下单时间
     CONSTRAINT `FK_TID` FOREIGN KEY (`task_id`) REFERENCES `task` (`task_id`),
     CONSTRAINT `FK_RID` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='任务订单表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1000000000 COMMENT='任务订单表';
 
 
 

@@ -31,10 +31,15 @@
                 <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                     <property name="supportedMediaTypes">
                         <list>
-                            <!-- 注意 这是传输json格式，无论是ajax还是外部接口传输-->
                             <value>application/json;charset=UTF-8</value>
                         </list>
                     </property>
+                    <property name="objectMapper">
+                        <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                            <property name="serializationInclusion" value="NON_NULL"/>
+                        </bean>
+                    </property>
+                    <property name="prettyPrint" value="true"/>
                 </bean>
             </list>
         </property>

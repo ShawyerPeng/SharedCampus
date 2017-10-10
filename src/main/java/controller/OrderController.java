@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import po.Order;
 import po.PagedResult;
+import po.RestResult;
 import po.Task;
 import service.OrderService;
 
@@ -42,7 +43,7 @@ public class OrderController {
     @RequestMapping("/queryPublishedOrders")
     @ResponseBody
     public PagedResult<Order> queryPublishedOrders(@RequestBody Order order,
-                                                   @RequestParam("pageNo") Integer pageNo,  @RequestParam("pageNo") Integer pageSize) {
+                                                   @RequestParam("pageNo") Integer pageNo, @RequestParam("pageNo") Integer pageSize) {
         Integer receiverId = order.getReceiverId();
         Byte orderStatus = order.getOrderStatus();
         return orderService.getOrdersByReceiverId(receiverId, orderStatus, pageNo, pageSize);
@@ -51,10 +52,33 @@ public class OrderController {
     @RequestMapping("/queryReceivedOrders")
     @ResponseBody
     public PagedResult<Order> queryReceivedOrders(@RequestBody Order order,
-                                                  @RequestParam("pageNo") Integer pageNo,  @RequestParam("pageNo") Integer pageSize) {
+                                                  @RequestParam("pageNo") Integer pageNo, @RequestParam("pageNo") Integer pageSize) {
         Integer publisherId = order.getPublisherId();
         Byte orderStatus = order.getOrderStatus();
         return orderService.getOrdersByPublisherId(publisherId, orderStatus, pageNo, pageSize);
+    }
+
+    @RequestMapping("/updateOrderStatus")
+    @ResponseBody
+    public RestResult updateOrderStatus(@RequestBody Order order) {
+        RestResult result = new RestResult();
+        Map<String, Object> data = new HashMap<>();
+
+        Integer orderId = order.getOrderId();
+        Byte orderStatus = order.getOrderStatus();
+
+        int success = orderService.updateOrderStatus(orderId, orderStatus);
+        if (success == 1) {
+            result.setData(data);
+            result.setStatusCode(201);
+            result.setMessage("订单状态修改成功");
+            return result;
+        } else {
+            result.setData(data);
+            result.setStatusCode(400);
+            result.setMessage("订单状态修改失败");
+            return result;
+        }
     }
 
 }

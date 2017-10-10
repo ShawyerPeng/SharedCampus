@@ -7,16 +7,16 @@ import java.util.Date;
 import java.util.List;
 
 public interface TaskService {
-    void insertTask(Integer publisherId, String title, String description, Integer category,
+    int insertTask(Integer publisherId, String title, String description, Integer category,
                     Double price, Integer counts, Date starttime, Date endtime);
 
-    void insertTaskWithPic(Integer publisherId, String title, String description, Integer category,
+    int insertTaskWithPic(Integer publisherId, String title, String description, Integer category,
                            Double price, Integer counts, Date starttime, Date endtime, String pic);
 
-    void updateTask(Integer taskId, Integer publisherId, String title, String description, Integer category,
+    int updateTask(Integer taskId, Integer publisherId, String title, String description, Integer category,
                     Double price, Integer counts, Date starttime, Date endtime);
 
-    void deleteTask(Integer taskId);
+    int deleteTask(Integer taskId);
 
     PagedResult<Task> queryByPage(Integer pageNo, Integer pageSize);
 

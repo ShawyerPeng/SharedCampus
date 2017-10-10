@@ -5,7 +5,7 @@ import po.User;
 import java.util.Date;
 
 public interface UserService {
-    int insertUser(String userName, String userPass);
+    int insertUser(User user);
 
     boolean isExistsUserName(String userName);
 

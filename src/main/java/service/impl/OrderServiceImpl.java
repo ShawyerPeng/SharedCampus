@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import po.Order;
 import po.PagedResult;
+import po.User;
 import service.OrderService;
 import utils.BeanUtil;
 
@@ -36,6 +37,11 @@ public class OrderServiceImpl implements OrderService {
         return BeanUtil.toPagedResult(orderMapper.selectByReceiverId(receiverId, orderStatus));
     }
 
-
-
+    @Override
+    public int updateOrderStatus(Integer orderId, Byte orderStatus) {
+        Order order = new Order();
+        order.setOrderId(orderId);
+        order.setOrderStatus(orderStatus);
+        return orderMapper.updateByPrimaryKeySelective(order);
+    }
 }

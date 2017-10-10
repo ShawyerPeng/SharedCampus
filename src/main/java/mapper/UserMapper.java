@@ -33,5 +33,4 @@ public interface UserMapper {
     User selectByUserName(String userName);
 
     User selectByUserPass(@Param("userName") String userName, @Param("userPass") String userPass);
-
 }
