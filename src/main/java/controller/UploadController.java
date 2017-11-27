@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import service.UploadService;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.UUID;
 
@@ -93,5 +95,19 @@ public class UploadController {
         }
 
         return "ok";
+    }
+
+    /**
+     * 获取图片保存的绝对路径
+     */
+    public static String imagePath(String relative, HttpServletRequest request) {
+        String path = null;
+        if (relative != null || !"".equals(relative)) {
+            String projectPath = request.getServletContext().getRealPath("/");
+            path = new File(projectPath).getParentFile().getAbsolutePath() + relative;
+            path = path.replaceAll("\\\\", "/");
+			System.out.println(path);
+        }
+        return path;
     }
 }

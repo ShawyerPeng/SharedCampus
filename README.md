@@ -8,7 +8,7 @@
 201 | 数据创建、修改成功（POST 方法成功新建资源）
 202 | 服务器已接受请求，但尚未处理（需要的资源无法及时建立，如异步操作）
 204 | 数据删除成功，没有 response body
-2.6 | GET 请求成功, 但是只返回一部分
+206 | GET 请求成功, 但是只返回一部分
 300 | 重定向
 304 | Not Modified - 用于 HTTP 缓存机制
 400 | 客户端错误（参数错误，请求格式不对，比如 body 无法解析）。通常在请求参数不合法或格式错误的时候可以返回这个状态码。
@@ -414,8 +414,21 @@ http://118.89.142.148:8080/image/uploadMultipart
 ### uploadWithDescription
 http://118.89.142.148:8080/image/uploadWithDescription
 
+## Daka
+请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
+--- | --- | --- | --- | ---
+`/daka/insert` | 新增大咖 | userId*, info, honor, achievement | POST | 
+`/daka/delete` | 删除大咖 | dakaId* | POST |
+`/daka/update` | 更新大咖信息 | dakaId*, info, honor, achievement | POST |
+`/daka/info` | 获取大咖信息 | dakaId* | GET |
 
-
+## DakaFollow
+请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
+--- | --- | --- | --- | ---
+`/dakaFollow/follow` | 关注大咖 | dakaId*, followerId* | POST | 
+`/dakaFollow/unfollow` | 取消关注大咖 | dakaId*, followerId* | POST |
+`/dakaFollow/getFollowerCount` | 获取大咖的被关注数 | dakaId* | POST |
+`/dakaFollow/getAllDakaFollows` | 获取大咖的所有关注者 | pageNo*, pageSize* | GET | 
 
 # 数据库字段表
 ## User

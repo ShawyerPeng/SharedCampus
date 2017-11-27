@@ -16,6 +16,9 @@
     <!-- 1.使用spring组件扫描 -->
     <context:component-scan base-package="controller" />
 
+    <!-- 自定义实现 spring 的全局异常解析器 -->
+    <bean id="exceptionHandler" class="exception.RestfulExceptionHandler" />
+
     <!--&lt;!&ndash;对特定的请求进行拦截&ndash;&gt;-->
     <!--<mvc:interceptors>-->
         <!--<mvc:interceptor>-->

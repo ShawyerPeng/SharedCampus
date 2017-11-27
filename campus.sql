@@ -117,3 +117,38 @@ CREATE TABLE `image` (
     `pic_url` VARCHAR(255) NOT NULL DEFAULT '',                 # 图片存储相对地址
     `description` VARCHAR(255) DEFAULT ''                       # 图片描述
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='图片表';
+
+
+
+DROP TABLE IF EXISTS `daka`;
+CREATE TABLE `daka` (
+    `daka_id` INT(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,  # 用户ID，主键
+    `user_id` INT(11) UNSIGNED NOT NULL,
+    `info` VARCHAR(255) DEFAULT '' COMMENT '大咖简介',
+    `honor` VARCHAR(255) DEFAULT '' COMMENT '大咖所获荣誉',
+    `achievement` VARCHAR(255) DEFAULT '' COMMENT '大咖拥有成果'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=10000 COMMENT='大咖信息表';
+
+DROP TABLE IF EXISTS `daka_follow`;
+CREATE TABLE `daka_follow` (
+    `id` INT(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,       # 关注ID，主键
+    `daka_id` INT(11) UNSIGNED NOT NULL,                                    # 被关注的大咖ID
+    `follower_id` INT(11) UNSIGNED NOT NULL,                                # 关注者ID
+    `follow_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP              # 关注时间
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='大咖关注表';
+
+DROP TABLE IF EXISTS `daka_task`;
+CREATE TABLE `daka_task` (
+    `id` INT(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,  # 用户ID，主键
+    `daka_id` INT(11) UNSIGNED NOT NULL COMMENT '大咖ID介',
+    `applier_id` VARCHAR(255) DEFAULT '' COMMENT '邀请大咖者ID',
+    `title` VARCHAR(32) NOT NULL DEFAULT '',                        # 任务标题
+    `description` VARCHAR(255) NOT NULL DEFAULT '',                 # 任务描述
+    `category` MEDIUMINT(8) NOT NULL DEFAULT 0,                     # 任务分类
+    `price` DOUBLE NOT NULL DEFAULT 0.0,                            # 任务价格
+    `starttime` TIMESTAMP NOT NULL DEFAULT '1970-01-02 00:00:00',   # 任务起始时间
+    `endtime` TIMESTAMP NOT NULL DEFAULT '1970-01-02 00:00:00',     # 任务终止时间
+    `pic` VARCHAR(127) DEFAULT '',                                  # 任务图片地址
+    `pubtime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,         # 任务发布时间
+    `is_finished` TINYINT(4) NOT NULL DEFAULT 0                     # 0：未完成，1：已完成
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=10000 COMMENT='大咖任务表';
