@@ -3,12 +3,14 @@ package service.impl;
 import com.github.pagehelper.PageHelper;
 import mapper.DakaFollowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import po.DakaFollow;
 import po.Follow;
 import po.PagedResult;
 import service.DakaFollowService;
 import utils.BeanUtil;
 
+@Service
 public class DakaFollowServiceImpl implements DakaFollowService {
     @Autowired
     private DakaFollowMapper dakaFollowMapper;

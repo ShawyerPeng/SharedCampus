@@ -5,6 +5,7 @@ import java.util.Date;
 public class Follow {
     private Integer followId;
 
+    // 某人的关注
     private Integer followerId;
 
     private Integer followedId;

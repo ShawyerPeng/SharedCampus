@@ -226,19 +226,18 @@ public class TaskController {
     }
 
     // http://localhost:8080/task/searchTaskByCategory?category=
+    //@RequestMapping(value = "/searchTaskByCategory")
+    //@ResponseBody
+    //public PagedResult<Task> searchTaskByCategory(@RequestBody Task task,
+    //                                              @RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
+    //    String category = task.getCategory().toString();
+    //    return taskService.selectTaskByCategory(category, pageNo, pageSize);
+    //}
+
     @RequestMapping(value = "/searchTaskByCategory")
     @ResponseBody
-    public PagedResult<Task> searchTaskByCategory(@RequestBody Task task,
-                                                  @RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
-        String category = task.getCategory().toString();
+    public PagedResult<Task> searchTaskByCategory(@RequestParam("category") Integer category,
+                                                   @RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
         return taskService.selectTaskByCategory(category, pageNo, pageSize);
     }
-
-    @RequestMapping(value = "/searchTaskByCategory2")
-    @ResponseBody
-    public PagedResult<Task> searchTaskByCategory2(@RequestParam("category") Integer category,
-                                                   @RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
-        return taskService.selectTaskByCategory(category.toString(), pageNo, pageSize);
-    }
-
 }

@@ -8,5 +8,9 @@ public interface FollowService {
 
     int deleteFollow(Integer followId);
 
+    PagedResult<Follow> getFolloweds(Integer followerId, Integer pageNo, Integer pageSize);
+
+    PagedResult<Follow> getFollowers(Integer followedId, Integer pageNo, Integer pageSize);
+
     PagedResult<Follow> getAllFollows(Integer pageNo, Integer pageSize);
 }

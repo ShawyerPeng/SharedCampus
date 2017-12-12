@@ -236,4 +236,27 @@ public class UserController {
             return result;
         }
     }
+
+    @RequestMapping("/infoById")
+    @ResponseBody
+    public RestResult infoById(@RequestBody User user) {
+        RestResult result = new RestResult();
+        Map<String, Object> data = new HashMap<>();
+
+        Integer userId = user.getUserId();
+        User getUser = userService.getUserByUserId(userId);
+
+        if (getUser != null) {
+            data.put("user", getUser);
+            result.setData(data);
+            result.setStatusCode(201);
+            result.setMessage("用户信息获取成功");
+            return result;
+        } else {
+            result.setData(data);
+            result.setStatusCode(400);
+            result.setMessage("用户信息获取失败");
+            return result;
+        }
+    }
 }

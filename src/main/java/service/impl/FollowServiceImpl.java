@@ -24,6 +24,28 @@ public class FollowServiceImpl implements FollowService {
         return followMapper.deleteByPrimaryKey(followId);
     }
 
+    /**
+     * 获取所有被某用户followerId关注了的人
+     */
+    @Override
+    public PagedResult<Follow> getFolloweds(Integer followerId, Integer pageNo, Integer pageSize) {
+        pageNo = (pageNo == null ? 1 : pageNo);
+        pageSize = (pageSize == null ? 10 : pageSize);
+        PageHelper.startPage(pageNo, pageSize);
+        return BeanUtil.toPagedResult(followMapper.selectAllFolloweds(followerId));
+    }
+
+    /**
+     * 获取所有关注了某用户followedId的人
+     */
+    @Override
+    public PagedResult<Follow> getFollowers(Integer followedId, Integer pageNo, Integer pageSize) {
+        pageNo = (pageNo == null ? 1 : pageNo);
+        pageSize = (pageSize == null ? 10 : pageSize);
+        PageHelper.startPage(pageNo, pageSize);
+        return BeanUtil.toPagedResult(followMapper.selectAllFollowers(followedId));
+    }
+
     @Override
     public PagedResult<Follow> getAllFollows(Integer pageNo, Integer pageSize) {
         pageNo = (pageNo == null ? 1 : pageNo);

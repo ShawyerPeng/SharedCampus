@@ -194,7 +194,19 @@
     where follow_id = #{followId,jdbcType=INTEGER}
   </update>
 
+  <select id="selectAllFolloweds" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from follow where follower_id = #{followerId,jdbcType=INTEGER}
+    order by follow_time desc
+  </select>
 
+  <select id="selectAllFollowers" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from follow where followed_id = #{followedId,jdbcType=INTEGER}
+    order by follow_time desc
+  </select>
 
   <select id="selectAllFollows" resultMap="BaseResultMap">
     select

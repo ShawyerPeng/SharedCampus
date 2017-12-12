@@ -98,32 +98,33 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public PagedResult<Task> selectTaskByCategory(String category, Integer pageNo, Integer pageSize) {
+    public PagedResult<Task> selectTaskByCategory(Integer category, Integer pageNo, Integer pageSize) {
         pageNo = (pageNo == null ? 1 : pageNo);
         pageSize = (pageSize == null ? 10 : pageSize);
         PageHelper.startPage(pageNo, pageSize);
 
-        Map<String, Object> categoryMap = new HashMap<>();
+        //Map<String, Object> categoryMap = new HashMap<>();
         // TODO: 修改对应的分类
-        categoryMap.put("1", "寻人");
-        categoryMap.put("2", "失物招领");
-        categoryMap.put("3", "找队友");
-        categoryMap.put("4", "办事");
-        categoryMap.put("5", "二手交易");
-        categoryMap.put("6", "学习辅导");
-        categoryMap.put("7", "代取快递");
-        categoryMap.put("8", "表白");
-        categoryMap.put("9", "推荐");
+        //categoryMap.put("1", "寻人");
+        //categoryMap.put("2", "失物招领");
+        //categoryMap.put("3", "找队友");
+        //categoryMap.put("4", "办事");
+        //categoryMap.put("5", "二手交易");
+        //categoryMap.put("6", "学习辅导");
+        //categoryMap.put("7", "代取快递");
+        //categoryMap.put("8", "表白");
+        //categoryMap.put("9", "推荐");
 
-        int categoryInteger = 0;
-        for (Map.Entry<String, Object> entry : categoryMap.entrySet()) {
-            if (entry.getValue().equals(category)) {
-                categoryInteger = Integer.parseInt(entry.getKey());
-            }
-        }
-        if (categoryInteger != 0) {
-            return BeanUtil.toPagedResult(taskMapper.selectByCategory(categoryInteger));
-        }
-        return BeanUtil.toPagedResult(new LinkedList<>());
+        //int categoryInteger = 0;
+        //for (Map.Entry<String, Object> entry : categoryMap.entrySet()) {
+        //    if (entry.getValue().equals(category)) {
+        //        categoryInteger = Integer.parseInt(entry.getKey());
+        //    }
+        //}
+        //if (categoryInteger != 0) {
+        //    return BeanUtil.toPagedResult(taskMapper.selectByCategory(categoryInteger));
+        //}
+        //return BeanUtil.toPagedResult(new LinkedList<>());
+        return BeanUtil.toPagedResult(taskMapper.selectByCategory(category));
     }
 }

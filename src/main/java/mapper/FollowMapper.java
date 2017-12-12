@@ -29,5 +29,9 @@ public interface FollowMapper {
 
     int updateByPrimaryKey(Follow record);
 
+    List<Follow> selectAllFolloweds(@Param("followerId") Integer followerId);
+
+    List<Follow> selectAllFollowers(@Param("followedId") Integer followedId);
+
     List<Follow> selectAllFollows();
 }

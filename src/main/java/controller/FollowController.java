@@ -59,6 +59,18 @@ public class FollowController {
         }
     }
 
+    @RequestMapping("/getFolloweds")
+    @ResponseBody
+    public PagedResult<Follow> getFolloweds(@RequestParam("followerId") Integer followerId, @RequestParam("pageNo") Integer pageNo, @RequestParam("pageNo") Integer pageSize) {
+        return followService.getAllFollows(pageNo, pageSize);
+    }
+
+    @RequestMapping("/getFollowers")
+    @ResponseBody
+    public PagedResult<Follow> getFollowers(@RequestParam("followedId") Integer followedId, @RequestParam("pageNo") Integer pageNo, @RequestParam("pageNo") Integer pageSize) {
+        return followService.getAllFollows(pageNo, pageSize);
+    }
+
     @RequestMapping("/getAllFollows")
     @ResponseBody
     public PagedResult<Follow> getAllFollows(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageNo") Integer pageSize) {

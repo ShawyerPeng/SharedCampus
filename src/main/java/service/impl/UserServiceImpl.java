@@ -44,6 +44,10 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectByUserName(userName);
     }
 
+    public User getUserByUserId(Integer userId) {
+        return userMapper.selectByPrimaryKey(userId);
+    }
+
     public int selectRowCount() {
         return userMapper.selectRowCount();
     }

@@ -38,6 +38,7 @@
 `/user/changePass` | 修改密码 | userName*, newPass* | POST |
 `/user/check` | 验证用户名是否存在| userName* | GET |
 `/user/info` | 返回某一用户的信息 | userName* | GET |
+`/user/infoById` | 返回某一用户的信息 | userId* | GET |
 `/user/edit` | 编辑用户信息 | userName, userPass, realname, gender, phone, email, alipay, iconimg, info, createdTime, lastLogin, honesty, balance | POST |
 
 ### register
@@ -150,7 +151,7 @@ http://118.89.142.148:8080/pocket/
 `/task/getUncompletedTasks?pageNo={1}&pageSize={20}` | 获取用户所有未完成任务 | publisherId* | GET | 
 `/task/getCompletedTasks?pageNo={1}&pageSize={20}` | 获取用户所有已完成任务 | publisherId* | GET |
 `/task/searchTaskByTitle?pageNo={1}&pageSize={20}` | 根据关键词搜索任务 | title* | GET |
-`/task/searchTaskByCategory?pageNo={1}&pageSize={20}` | 根据分类搜索任务 | category* | GET |
+`/task/searchTaskByCategory?category={1}&pageNo={1}&pageSize={20}` | 根据分类搜索任务 | category* | GET |
 ### insert
 http://118.89.142.148:8080/task/insert
 ```json
@@ -241,12 +242,7 @@ http://118.89.142.148:8080/task/searchTaskByTitle?pageNo={1}&pageSize={20}
 
 ```
 ### searchTaskByCategory
-http://118.89.142.148:8080/task/searchTaskByCategory?pageNo={1}&pageSize={20}
-```json
-{
-	"category":"这是任务分类"
-}
-```
+直接带参数GET：http://118.89.142.148:8080/task/searchTaskByCategory?category={1}&pageNo={1}&pageSize={20}
 
 ## Comment
 请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
@@ -322,14 +318,17 @@ http://118.89.142.148:8080/collect/delete
 }
 ```
 ### getAllCollects
-http://localhost:8080/collect/getAllCollects?pageNo=1&pageSize=20
+http://118.89.142.148:8080/collect/getAllCollects?pageNo=1&pageSize=20
 
 ## Follow
 请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
 --- | --- | --- | --- | ---
 `/follow/insert` | 添加任务关注 | followerId*, followedId* | POST | 
 `/follow/delete` | 删除任务关注 | followId* | POST |
-`/follow/getAllCollects` | 获取所有关注 | pageNo*, pageSize* | GET | 
+`/follow/getFolloweds` | 获取所有被followerId关注了的人 | followerId*, pageNo*, pageSize* | GET | 
+`/follow/getFollowers` | 获取所有关注了某用户followedId的人 | followedId*, pageNo*, pageSize* | GET | 
+`/follow/getAllFollows` | 获取所有关注（废弃） | pageNo*, pageSize* | GET | 
+
 ### insert
 http://118.89.142.148:8080/follow/insert
 ```json
@@ -345,8 +344,12 @@ http://118.89.142.148:8080/follow/delete
 	"followId":1
 }
 ```
-### getAllCollects
-http://localhost:8080/follow/getAllCollects?pageNo=1&pageSize=20
+### getFolloweds
+直接带参数GET: http://118.89.142.148:8080/follow/getFolloweds?followerId=10000&pageNo=1&pageSize=10
+### getFollowers
+直接带参数GET: http://118.89.142.148:8080/follow/getFollowers?followedId=10000&pageNo=1&pageSize=10
+### getAllFollows
+http://118.89.142.148:8080/follow/getAllCollects?pageNo=1&pageSize=20
 
 
 ## Order

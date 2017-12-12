@@ -13,6 +13,8 @@ public interface UserService {
 
     User getUserByUserName(String userName);
 
+    User getUserByUserId(Integer userId);
+
     int selectRowCount();
 
     int deleteUser(String userName, String userPass);

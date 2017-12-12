@@ -30,5 +30,5 @@ public interface TaskService {
 
     PagedResult<Task> selectTaskByTitle(String title, Integer pageNo, Integer pageSize);
 
-    PagedResult<Task> selectTaskByCategory(String category, Integer pageNo, Integer pageSize);
+    PagedResult<Task> selectTaskByCategory(Integer category, Integer pageNo, Integer pageSize);
 }

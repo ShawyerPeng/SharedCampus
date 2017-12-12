@@ -5,7 +5,7 @@
       <paths name="118.89.142.148">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/ubuntu/web" local="$PROJECT_DIR$/out/artifacts/Campus_war_exploded" web="/" />
+            <mapping deploy="/home/ubuntu/campus" local="$PROJECT_DIR$/out/artifacts/Campus_war_exploded" web="/" />
           </mappings>
         </serverdata>
       </paths>
