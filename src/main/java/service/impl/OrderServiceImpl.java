@@ -22,6 +22,22 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public PagedResult<Order> getOrdersByPublisherId(Integer publisherId, Byte orderType, Byte orderStatus, Integer pageNo, Integer pageSize) {
+        pageNo = (pageNo == null ? 1 : pageNo);
+        pageSize = (pageSize == null ? 10 : pageSize);
+        PageHelper.startPage(pageNo, pageSize);
+        return BeanUtil.toPagedResult(orderMapper.selectByPublisherIdAndType(publisherId, orderType, orderStatus));
+    }
+
+    @Override
+    public PagedResult<Order> getOrdersByReceiverId(Integer receiverId, Byte orderType, Byte orderStatus, Integer pageNo, Integer pageSize) {
+        pageNo = (pageNo == null ? 1 : pageNo);
+        pageSize = (pageSize == null ? 10 : pageSize);
+        PageHelper.startPage(pageNo, pageSize);
+        return BeanUtil.toPagedResult(orderMapper.selectByReceiverIdAndType(receiverId, orderType, orderStatus));
+    }
+
+    @Override
     public PagedResult<Order> getOrdersByPublisherId(Integer publisherId, Byte orderStatus, Integer pageNo, Integer pageSize) {
         pageNo = (pageNo == null ? 1 : pageNo);
         pageSize = (pageSize == null ? 10 : pageSize);

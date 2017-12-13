@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import po.Comment;
 import service.CommentService;
+import service.UserService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,8 @@ import java.util.Map;
 public class CommentController {
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
@@ -79,6 +82,19 @@ public class CommentController {
     public Map<String, Object> getTaskComments(@RequestBody Comment comment) {
         Integer taskId = comment.getTaskId();
         List<Comment> comments = commentService.getTaskComments(taskId);
+
+        System.out.println(comments);
+
+        for (Comment c : comments) {
+            Integer fromUid = c.getFromUid();
+            Integer toUid = c.getToUid();
+            if (fromUid != null) {
+                c.setFromUsername(userService.getUserByUserId(fromUid).getUserName());
+            }
+            if (toUid != null) {
+                c.setToUsername(userService.getUserByUserId(toUid).getUserName());
+            }
+        }
 
         Map<String, Object> map = new HashMap<>();
         Map<String, Object> data = new HashMap<>();

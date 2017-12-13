@@ -5,6 +5,8 @@ import java.util.Date;
 public class Order {
     private Integer orderId;
 
+    private Byte orderType;
+
     private Integer taskId;
 
     private Integer publisherId;
@@ -44,6 +46,14 @@ public class Order {
 
     public void setOrderId(Integer orderId) {
         this.orderId = orderId;
+    }
+
+    public Byte getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(Byte orderType) {
+        this.orderType = orderType;
     }
 
     public Integer getTaskId() {

@@ -33,5 +33,4 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> getTaskComments(Integer taskId) {
         return commentMapper.selectByTaskId(taskId);
     }
-
 }

@@ -29,7 +29,11 @@ public interface OrderMapper {
 
     int updateByPrimaryKey(Order record);
 
-    List<Order> selectByReceiverId(@Param("receiverId") Integer receiverId, @Param("orderStatus") Byte orderStatus);
+    List<Order> selectByPublisherIdAndType(@Param("publisherId") Integer receiverId, @Param("orderType") Byte orderType, @Param("orderStatus") Byte orderStatus);
+
+    List<Order> selectByReceiverIdAndType(@Param("receiverId") Integer publisherId, @Param("orderType") Byte orderType, @Param("orderStatus") Byte orderStatus);
 
     List<Order> selectByPublisherId(@Param("publisherId") Integer publisherId, @Param("orderStatus") Byte orderStatus);
+
+    List<Order> selectByReceiverId(@Param("receiverId") Integer receiverId, @Param("orderStatus") Byte orderStatus);
 }

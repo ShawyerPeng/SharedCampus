@@ -356,13 +356,15 @@ http://118.89.142.148:8080/follow/getAllCollects?pageNo=1&pageSize=20
 请求 URL | 功能描述 | 请求参数 | 请求方式 | 返回结果
 --- | --- | --- | --- | ---
 `/order/insert` | 新增订单 | taskId*, receiverId*, price* | POST | 
-`/order/queryPublishedOrders` | 根据订单状态查询所有发出任务的订单 | receiverId*, orderStatus* | GET |
-`/order/queryReceivedOrders` | 根据订单状态查询所有接受任务的订单 | publisherId | GET |
+`/order/getPublishOrdersByType` | 根据订单类型及订单状态查询所有发出的订单 | publisherId*, orderType*, orderStatus* | GET |
+`/order/getReceiveOrdersByType` | 根据订单类型及订单状态查询所有接受的订单 | receiverId*, orderType*, orderStatus* | GET |
+`/order/queryPublishedOrders` | 根据订单状态查询所有发出任务的订单（废弃） | receiverId*, orderStatus* | GET |
+`/order/queryReceivedOrders` | 根据订单状态查询所有接受任务的订单（废弃） | publisherId* | GET |
 `/order/updateOrderStatus` | 修改订单状态 | orderId*, orderStatus* | POST |
-`/order/` |  | | POST |
 
 ### insert
 http://118.89.142.148:8080/order/insert
+如果是大咖任务,则taskId=0
 ```json
 {
 	"taskId":1,
@@ -394,11 +396,10 @@ http://118.89.142.148:8080/order/updateOrderStatus
 	"orderStatus":3
 }
 ```
-### 
-http://118.89.142.148:8080/order/
-```json
-
-```
+### getPublishOrdersByType
+直接带参数GET：http://118.89.142.148:8080/order/getPublishOrdersByType?publisherId=1&orderType=1&orderStatus=1&pageNo=1&pageSize=10
+### getReceiveOrdersByType
+直接带参数GET：http://118.89.142.148:8080/order/getReceiveOrdersByType?receiverId=1&orderType=1&orderStatus=1&pageNo=1&pageSize=10
 
 ## Image
 非JSON格式！！！请用form-data格式传输！！！  

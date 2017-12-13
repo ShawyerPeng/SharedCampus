@@ -6,9 +6,13 @@ import po.PagedResult;
 public interface OrderService {
     int insertOrder(Order order);
 
-    PagedResult<Order> getOrdersByReceiverId(Integer receiverId, Byte orderStatus, Integer pageNo, Integer pageSize);
+    PagedResult<Order> getOrdersByPublisherId(Integer publisherId, Byte orderType, Byte orderStatus, Integer pageNo, Integer pageSize);
+
+    PagedResult<Order> getOrdersByReceiverId(Integer receiverId, Byte orderType, Byte orderStatus, Integer pageNo, Integer pageSize);
 
     PagedResult<Order> getOrdersByPublisherId(Integer publisherId, Byte orderStatus, Integer pageNo, Integer pageSize);
+
+    PagedResult<Order> getOrdersByReceiverId(Integer receiverId, Byte orderStatus, Integer pageNo, Integer pageSize);
 
     int updateOrderStatus(Integer orderId, Byte orderStatus);
 }

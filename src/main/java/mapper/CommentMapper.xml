@@ -6,6 +6,8 @@
     <result column="task_id" property="taskId" jdbcType="INTEGER" />
     <result column="from_uid" property="fromUid" jdbcType="INTEGER" />
     <result column="to_uid" property="toUid" jdbcType="INTEGER" />
+    <result column="from_username" property="fromUsername" jdbcType="VARCHAR" />
+    <result column="to_username" property="toUsername" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -85,7 +87,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from comment
     where comment_id = #{commentId,jdbcType=INTEGER}
@@ -101,10 +103,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="po.Comment" >
-    insert into comment (comment_id, task_id, from_uid, 
+    insert into comment (comment_id, task_id, from_uid,
       to_uid, content, send_time
       )
-    values (#{commentId,jdbcType=INTEGER}, #{taskId,jdbcType=INTEGER}, #{fromUid,jdbcType=INTEGER}, 
+    values (#{commentId,jdbcType=INTEGER}, #{taskId,jdbcType=INTEGER}, #{fromUid,jdbcType=INTEGER},
       #{toUid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{sendTime,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -235,11 +237,10 @@
     where from_uid = #{fromUid,jdbcType=INTEGER}
   </select>
   <select id="selectByTaskId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-    select
-    <include refid="Base_Column_List" />
-    from comment
-    where task_id = #{taskId,jdbcType=INTEGER}
+      select
+      <include refid="Base_Column_List" />
+      from comment
+      where task_id = #{taskId,jdbcType=INTEGER}
   </select>
-
 
 </mapper>

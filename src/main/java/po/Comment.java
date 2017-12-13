@@ -16,6 +16,10 @@ public class Comment {
 
     private Integer toUid;
 
+    private String fromUsername;
+
+    private String toUsername;
+
     private String content;
 
     private Date sendTime;
@@ -79,5 +83,35 @@ public class Comment {
 
     public void setSendTime(Date sendTime) {
         this.sendTime = sendTime;
+    }
+
+    public String getFromUsername() {
+        return fromUsername;
+    }
+
+    public void setFromUsername(String fromUsername) {
+        this.fromUsername = fromUsername;
+    }
+
+    public String getToUsername() {
+        return toUsername;
+    }
+
+    public void setToUsername(String toUsername) {
+        this.toUsername = toUsername;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentId=" + commentId +
+                ", taskId=" + taskId +
+                ", fromUid=" + fromUid +
+                ", toUid=" + toUid +
+                ", fromUsername='" + fromUsername + '\'' +
+                ", toUsername='" + toUsername + '\'' +
+                ", content='" + content + '\'' +
+                ", sendTime=" + sendTime +
+                '}';
     }
 }

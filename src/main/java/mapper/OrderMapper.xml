@@ -3,6 +3,7 @@
 <mapper namespace="mapper.OrderMapper" >
   <resultMap id="BaseResultMap" type="po.Order" >
     <id column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="order_type" property="orderType" jdbcType="TINYINT" />
     <result column="task_id" property="taskId" jdbcType="INTEGER" />
     <result column="receiver_id" property="receiverId" jdbcType="INTEGER" />
     <result column="price" property="price" jdbcType="DOUBLE" />
@@ -74,7 +75,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    order_id, task_id, receiver_id, price, order_status, comment_status, comment_buyer, 
+    order_id, order_type, task_id, publisher_id, receiver_id, price, order_status, comment_status, comment_buyer,
     comment_seller, rate_status, rate_buyer, rate_seller, order_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="po.OrderExample" >
@@ -108,12 +109,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="po.Order" >
-    insert into `order` (order_id, task_id, receiver_id,
+    insert into `order` (order_id, order_type, task_id, publisher_id, receiver_id,
       price, order_status, comment_status, 
       comment_buyer, comment_seller, rate_status, 
       rate_buyer, rate_seller, order_time
       )
-    values (#{orderId,jdbcType=INTEGER}, #{taskId,jdbcType=INTEGER}, #{receiverId,jdbcType=INTEGER}, 
+    values (#{orderId,jdbcType=INTEGER}, #{orderType,jdbcType=TINYINT}, #{taskId,jdbcType=INTEGER}, #{publisherId,jdbcType=INTEGER}, #{receiverId,jdbcType=INTEGER},
       #{price,jdbcType=DOUBLE}, #{orderStatus,jdbcType=TINYINT}, #{commentStatus,jdbcType=TINYINT}, 
       #{commentBuyer,jdbcType=VARCHAR}, #{commentSeller,jdbcType=VARCHAR}, #{rateStatus,jdbcType=TINYINT}, 
       #{rateBuyer,jdbcType=TINYINT}, #{rateSeller,jdbcType=TINYINT}, #{orderTime,jdbcType=TIMESTAMP}
@@ -125,8 +126,14 @@
       <if test="orderId != null" >
         order_id,
       </if>
+      <if test="orderType != null" >
+        order_id,
+      </if>
       <if test="taskId != null" >
         task_id,
+      </if>
+      <if test="publisherId != null" >
+        publisher_id,
       </if>
       <if test="receiverId != null" >
         receiver_id,
@@ -163,8 +170,14 @@
       <if test="orderId != null" >
         #{orderId,jdbcType=INTEGER},
       </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=TINYINT},
+      </if>
       <if test="taskId != null" >
         #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="publisherId != null" >
+        #{publisher_id,jdbcType=INTEGER},
       </if>
       <if test="receiverId != null" >
         #{receiverId,jdbcType=INTEGER},
@@ -269,8 +282,14 @@
   <update id="updateByPrimaryKeySelective" parameterType="po.Order" >
     update `order`
     <set >
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=TINYINT},
+      </if>
       <if test="taskId != null" >
         task_id = #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="publisherId != null" >
+        publisher_id = #{publisherId,jdbcType=INTEGER},
       </if>
       <if test="receiverId != null" >
         receiver_id = #{receiverId,jdbcType=INTEGER},
@@ -307,7 +326,9 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="po.Order" >
     update `order`
-    set task_id = #{taskId,jdbcType=INTEGER},
+    set order_type = #{orderType,jdbcType=TINYINT},
+      task_id = #{taskId,jdbcType=INTEGER},
+      publisher_id = #{publisherId,jdbcType=INTEGER},
       receiver_id = #{receiverId,jdbcType=INTEGER},
       price = #{price,jdbcType=DOUBLE},
       order_status = #{orderStatus,jdbcType=TINYINT},
@@ -322,7 +343,22 @@
   </update>
 
 
-
+  <select id="selectByPublisherIdAndType" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from `order`
+    where publisher_id = #{publisherId,jdbcType=INTEGER}
+    and order_type = #{orderType,jdbcType=TINYINT}
+    and order_status = #{orderStatus,jdbcType=TINYINT}
+  </select>
+  <select id="selectByReceiverIdAndType" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from `order`
+    where receiver_id = #{receiverId,jdbcType=INTEGER}
+    and order_type = #{orderType,jdbcType=TINYINT}
+    and order_status = #{orderStatus,jdbcType=TINYINT}
+  </select>
   <select id="selectByPublisherId" resultMap="BaseResultMap" parameterType="map" >
     select
     <include refid="Base_Column_List" />

@@ -40,6 +40,20 @@ public class OrderController {
         }
     }
 
+    @RequestMapping("/getPublishOrdersByType")
+    @ResponseBody
+    public PagedResult<Order> getPublishedOrdersByType(@RequestParam("publisherId") Integer publisherId, @RequestParam("orderType") Byte orderType, @RequestParam("orderStatus") Byte orderStatus,
+                                                       @RequestParam Integer pageNo, @RequestParam Integer pageSize) {
+        return orderService.getOrdersByPublisherId(publisherId, orderType, orderStatus, pageNo, pageSize);
+    }
+
+    @RequestMapping("/getReceiveOrdersByType")
+    @ResponseBody
+    public PagedResult<Order> getReceivedOrdersByType(@RequestParam("receiverId") Integer receiverId, @RequestParam("orderType") Byte orderType, @RequestParam("orderStatus") Byte orderStatus,
+                                                      @RequestParam Integer pageNo, @RequestParam Integer pageSize) {
+        return orderService.getOrdersByReceiverId(receiverId, orderType, orderStatus, pageNo, pageSize);
+    }
+
     @RequestMapping("/queryPublishedOrders")
     @ResponseBody
     public PagedResult<Order> queryPublishedOrders(@RequestBody Order order,

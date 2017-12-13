@@ -67,9 +67,11 @@ CREATE TABLE `follow` (
 
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
-    `order_id` INT(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT '任务订单ID，主键',
+    `order_id` INT(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT '任务订单ID/大咖订单ID，主键',
+    `order_type` TINYINT(4) NOT NULL COMMENT '订单类型（任务订单:1, 大咖订单:2）',
     `task_id` INT(11) UNSIGNED DEFAULT NULL COMMENT '任务ID',
-    `receiver_id` INT(11) UNSIGNED DEFAULT NULL COMMENT '任务接受者ID',
+    `publisher_id` INT(11) UNSIGNED DEFAULT NULL COMMENT '任务接受者ID/邀请人ID',
+    `receiver_id` INT(11) UNSIGNED DEFAULT NULL COMMENT '任务接受者ID/大咖ID',
     `price` DOUBLE DEFAULT NULL COMMENT '订单金额',
     `order_status` TINYINT(4) DEFAULT 1 COMMENT '任务订单状态（订单生成1、进行中、已完成、已取消、有纠纷）',
     `comment_status` TINYINT(4) DEFAULT NULL COMMENT '评价状态（买/卖家未评价1、买/卖家已评价2，如12表示买家未评价、卖家已评价）',
